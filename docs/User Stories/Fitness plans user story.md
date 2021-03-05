@@ -23,5 +23,3 @@ If they try to submit an invalid workout, they will be told “please enter a ti
 If they cancel they go back to the original list. If they press save, they go back to the list with the saved items.  
   
 If the users press the bottom saying “Back to Dashboard”, they will go back to the dashboard when they are done.  
-  
-The user will also have a login field called “Sync to Google Calendar”. Pressing this button will take them to the OAuth sign in story.
