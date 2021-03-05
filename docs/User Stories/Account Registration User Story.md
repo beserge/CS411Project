@@ -2,11 +2,7 @@
 
 When the user decides to make an account, they press the signup button on the splash page, and are taken to the signup page.  
   
-The user will enter their email. If the email entered does not match standard email formatting, text pops up saying so.  
-The user enters their desired password twice. If the passwords do not match, text pops up next to the second one saying so.  
-The user enters their desired username. If the username matches one already in the database, text pops up saying so. The user then submits their account details.  
-If there are any error conditions present, text pops up at the top saying “Fix any errors before continuing”, and the user cannot continue.  
-If the user submits the form without all required fields being filled, a message will appear at the top saying “Please fill out all required fields”, and the user cannot continue.  
+The user will login with their gmail account. This will be handled by the firebase API.
 If the form has been filled out correctly, the user will be taken to the BMI page after pressing submit. 
   
 The user will enter their height, weight, and gender.  
