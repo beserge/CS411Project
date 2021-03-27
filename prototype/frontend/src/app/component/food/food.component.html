@@ -1,0 +1,14 @@
+<h1>Calories Calculator</h1>
+
+<div>
+    <label for="Search">
+        What do you eat today?
+    </label>
+<br/>
+    <input id="SearchInput" type="text" [(ngModel)]="foodinfo.foodname"/>
+    <button (click)="doSubmit()">Search</button>
+
+</div>
+
+<pre>{{foodcal}}</pre>
+
