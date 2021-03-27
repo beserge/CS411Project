@@ -12,16 +12,7 @@ module.exports = function cnTextHandler(req, res){
 
     axios(config)
         .then(function (response) {
-            let items = response.data.items
-            let reply = ""
-
-            items.forEach(function (item){
-                reply += "<h1>" + JSON.parse(JSON.stringify(item.name)) + "</h1>"
-                reply += "<p>Calories: " + JSON.parse(JSON.stringify(item.calories)) + "</p>"
-                reply += "<p>Total Fat g:" + JSON.parse(JSON.stringify(item.fat_total_g)) + "</p>"
-                reply += "<p>Serving Size g: " + JSON.parse(JSON.stringify(item.serving_size_g)) + "</p>"
-            });
-
+            let reply = JSON.stringify(response.data)
             res.send(reply);
         })
         .catch(function (error) {
