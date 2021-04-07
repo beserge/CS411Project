@@ -8,6 +8,20 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+var mongoose = require('mongoose')
+mongoose.connect('mongodb://localhost/')
+
+var Reg = mongoose.model('Reg', {'name': String})
+var testreg = new Reg({'name': 'ben'})
+testreg.save(function (err){
+    if(err){
+        console.log('Write to db error')
+    }
+    else{
+        console.log('Write to db success')
+    }
+})
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
