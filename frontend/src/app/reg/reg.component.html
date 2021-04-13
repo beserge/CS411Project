@@ -1,0 +1,116 @@
+<div id="bmi_div">
+  <h2>BMI</h2>
+  <form>
+
+    <div class="bmi">
+      <label for="height">
+        Height
+      </label>
+      <input id="height" type="number">
+    </div>
+
+    <div>
+      <label for="weight">
+        Weight
+      </label>
+      <input id="weight" type="number" >
+    </div>
+    <div>
+      <label for="weightchange">
+        Total weight Lose/Gain
+      </label>
+      <input id="weightloss" type="number" >
+    </div>
+
+    <div>
+      <label for="timedays">
+        Time days
+      </label>
+      <input id="timedays" type="number" >
+    </div>
+
+    <button class="button" type="submit" (click)="doSubmitBmi()">Next</button>
+
+  </form>
+</div>
+
+<div hidden id="diet_div">
+  <h2>DIET</h2>
+  <form>
+      <div class="diet">
+          <div>
+              <label>
+                carb
+              </label>
+              <input id="carb" type="number" >
+            </div>
+            <div>
+              <label>
+                fat
+              </label>
+              <input id="fat" type="number" >
+            </div>
+            <div>
+              <label>
+                protein
+              </label>
+              <input id="protein" type="number">
+            </div>
+          <div>
+          <label>
+              diet type
+            </label>
+            <input type="checkbox" id="Kosher" name="Kosher">Kosher
+            <input type="checkbox" id="Halal" name="Halal">Halal
+            <input type="checkbox" id="Vege" name="Vege">Vegetarian
+            <input type="checkbox" id="Vegan" name="Vegan">Vegan
+          </div>
+          <button class="button" type="submit" (click)="backDiet()">Back</button>
+          <button class="button" type="submit" (click)="doSubmitDiet()">Next</button>
+      </div>
+  </form>
+</div>
+
+<div hidden id="workout_div">
+  <h2>Workout</h2>
+
+  <form>
+
+    <div>
+      <label for="days">
+        days
+      </label>
+            <input type="checkbox" id="mon" name="Mon">Mon
+            <input type="checkbox" id="tue" name="Tue">Tue
+            <input type="checkbox" id="wed" name="Wed">Wed
+            <input type="checkbox" id="thur" name="Thur">Thur
+            <input type="checkbox" id="fri" name="Fri">Fri
+            <input type="checkbox" id="sat" name="Sat">Sat
+            <input type="checkbox" id="sun" name="Sun">Sun
+      
+    </div>
+
+
+    <div>
+      <label for="timeframe">
+        Time frame
+      </label>
+      <input id="timeframe" type="number" >
+    </div>
+
+    <div>
+      <label for="workouttypes">
+        Workout types
+      </label>
+            <input type="checkbox" id="out" name="Out">Outdoor
+            <input type="checkbox" id="in" name="In">Indoor
+            <input type="checkbox" id="cyc" name="Cyc">Cycling
+            <input type="checkbox" id="run" name="Run">Running
+            
+    </div>
+    <button class="button" type="submit" (click)="backWorkout()">Back</button>
+    <button class="button" type="submit" (click)="doSubmitWorkout()">Submit</button>
+
+  </form>
+
+</div>
