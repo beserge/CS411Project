@@ -10,6 +10,7 @@ h1 {
     font-weight: lighter;
   }
   body {
+    font-family: 'Dela Gothic One', cursive;
     margin: 2em;
   }
   body, input[type="text"], button {
