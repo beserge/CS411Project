@@ -5,6 +5,7 @@ var logger = require('morgan');
 
 var cntextRouter = require('./routes/cntext');
 var regRouter = require('./routes/reg');
+var mealRouter = require('./routes/meal');
 
 var app = express();
 
@@ -19,7 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/cntext', cntextRouter);
 app.use('/reg', regRouter);
-app.use('/del_all', regRouter);
+app.use('/meal', mealRouter);
 
 //RegData.deleteMany(function(err){if(err) console.log(err) })
 

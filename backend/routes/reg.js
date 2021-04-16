@@ -32,7 +32,7 @@ const RegSchema = new Schema({
 
 let RegData = mongoose.model('RegData', RegSchema)
 
-router.get('/', function(req, res, next) {
+router.post('/', function(req, res, next) {
     console.log(req.query)
     let regdata = new RegData(req.query);
     regdata.save(function (err){ 
