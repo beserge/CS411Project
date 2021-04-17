@@ -1,0 +1,15 @@
+<div
+  class="app-splashscreen"
+  [ngStyle]="{ 
+    left: windowWidth, 
+    opacity: opacityChange,
+    transition: splashTransition
+  }"
+  *ngIf="showSplash"
+>
+  <div class="app-splashscreen-inner">
+    <div class="app-logo material-icons">self_improvement</div>
+    <div class="app-label">4P1-F1T (API-FIT)</div>
+    <div class="app-loader"></div>
+    <button class="button" type="submit">Login</button>
+</div>
