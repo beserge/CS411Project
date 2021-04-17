@@ -1,23 +1,29 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FoodComponent } from './component/food/food.component';
-import { SplashScreenComponent } from './components/splash-screen/splash-screen.component';
-import { FormsModule } from '@angular/forms';
 
+import { FormsModule } from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms';
+import { RegComponent } from './reg/reg.component';
+import {HttpClientModule} from '@angular/common/http';
+import { MiddleService } from './service/middle.service';
+import { SplashScreenComponent } from './splashscreen/splashscreen.component';
 @NgModule({
   declarations: [
     AppComponent,
-    FoodComponent,
-    SplashScreenComponent
+    SplashScreenComponent,
+    RegComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule 
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [MiddleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
