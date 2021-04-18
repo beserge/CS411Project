@@ -9,9 +9,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RegComponent } from './reg/reg.component';
 import {HttpClientModule} from '@angular/common/http';
 import { MiddleService } from './service/middle.service';
+import { SplashScreenComponent } from './splashscreen/splashscreen.component';
 @NgModule({
   declarations: [
     AppComponent,
+    SplashScreenComponent,
     RegComponent,
   ],
   imports: [
