@@ -1,7 +1,8 @@
 import { Component, OnInit} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { MiddleService } from '../service/middle.service'
+import { MiddleService } from '../service/middle.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-reg',
   templateUrl: './reg.component.html',
@@ -13,7 +14,10 @@ export class RegComponent  {
   public weightlose:any
   public timeframe:any
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, private service: MiddleService) { }
+  constructor(private formBuilder: FormBuilder, 
+              private http: HttpClient, 
+              private service: MiddleService,
+              private router: Router) { }
 
   public hide(name:string, val:Boolean){
     let div:any = document.getElementById(name)
@@ -133,7 +137,8 @@ export class RegComponent  {
     let run:any = document.getElementById("run")
     this.running = run.checked
 
-    this.getchilddata()
+    this.getchilddata();
+    this.router.navigateByUrl('/home');
   }
   
   getchilddata(){
@@ -165,5 +170,5 @@ export class RegComponent  {
     console.log(model)
     this.service.doSubmit(model).subscribe(
     (response)=>{})
-  }
+  } 
 }
