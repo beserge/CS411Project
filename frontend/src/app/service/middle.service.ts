@@ -12,9 +12,17 @@ export class MiddleService {
   
     doSubmit(wholedata:any): Observable<any> {
       let datastr = new URLSearchParams(wholedata).toString()
-      console.log(Config.baseURL+Config.texturl+datastr)
-      return this.http.get(Config.baseURL+Config.texturl+datastr,
+      console.log(Config.baseURL+Config.texturl_reg+datastr)
+      return this.http.post(Config.baseURL+Config.texturl_reg+datastr,
         {observe:'body', responseType:'json'})
+    }
+    Submitmeal(foodinfo:any): Observable<any>  {
+      return this.http.get(Config.baseURL+Config.texturl_search+foodinfo,
+        {observe:'body', responseType:'json'})
+    }
+    Back_meal(nuinfo:any): Observable<any>  {
+      return this.http.post(Config.baseURL+Config.texturl_meal+nuinfo,
+        {observe:'body', responseType:'text'})
     }
 }
 
