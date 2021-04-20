@@ -40,7 +40,7 @@ export class MealComponent  {
               this.sodium += Math.round(response[i][j]['sodium_mg'])
               this.name += response[i][j]['name']
               this.po += Math.round(response[i][j]['potassium_mg'])
-              this.safat += Math.round(response[i][j]['saturated_g'])
+              this.safat += Math.round(response[i][j]['fat_saturated_g'])
               this.chol += Math.round(response[i][j]['cholesterol_mg'])
               this.carbon_sum+=Math.round(response[i][j]['carbohydrates_total_g'])
               this.fat_sum+=Math.round(response[i][j]['fat_total_g'])
