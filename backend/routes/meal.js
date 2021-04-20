@@ -26,20 +26,19 @@ router.post('/', function(req, res, next) {
     mealdata.save(function (err){ 
         if (err){
             console.log(err) 
-            res.sendStatus(500)
+            res.status(500).send({message: "meal, DB save error"})
         }})
 
     //check database contents
     MealData.find(function(err, items){
         if(err) {
-            res.sendStatus(500)
             return console.error(err)
         }
-            let reply = JSON.stringify(items)
+        let reply = JSON.stringify(items)
         console.log(reply)
     })
 
-    res.sendStatus(200) //OK
+    res.status(200).send({message: "Meal added to DB"})
 })
 
 module.exports = router
