@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
         })
         .catch(function (error) {
             console.log(error);
-            res.sendStatus(500)
+            res.status(500).send({message: "axios error, cntext"})
         });
 });
 

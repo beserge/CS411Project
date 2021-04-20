@@ -38,20 +38,19 @@ router.post('/', function(req, res, next) {
     regdata.save(function (err){ 
         if (err){
             console.log(err) 
-            res.sendStatus(500)
+            res.status(500).send({message: "reg, DB add error"})
         }})
 
     //check database contents
     RegData.find(function(err, items){
         if(err) {
-            res.sendStatus(500)
             return console.error(err)
         }
             let reply = JSON.stringify(items)
         console.log(reply)
     })
 
-    res.sendStatus(200) //OK
-    })
+    res.status(200).send({message: "Reg added to DB"})
+})
 
 module.exports = router
