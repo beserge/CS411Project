@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms'
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegComponent } from './reg/reg.component';
@@ -24,6 +24,7 @@ import { MealComponent } from './meal/meal.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    RouterModule,
   ],
   providers: [MiddleService],
   bootstrap: [AppComponent]
