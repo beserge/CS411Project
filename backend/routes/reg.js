@@ -39,6 +39,7 @@ router.post('/', function(req, res, next) {
         if (err){
             console.log(err) 
             res.status(500).send({message: "reg, DB add error"})
+            return
         }})
 
     //check database contents
