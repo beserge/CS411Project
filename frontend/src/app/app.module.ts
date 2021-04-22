@@ -11,12 +11,16 @@ import {HttpClientModule} from '@angular/common/http';
 import { MiddleService } from './service/middle.service';
 import { SplashScreenComponent } from './splashscreen/splashscreen.component';
 import { MealComponent } from './meal/meal.component';
+import { FitnessComponent } from './fitness/fitness.component';
+import { SidebarModule } from "ng-sidebar";
+
 @NgModule({
   declarations: [
     AppComponent,
     SplashScreenComponent,
     RegComponent,
-    MealComponent
+    MealComponent,
+    FitnessComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +28,8 @@ import { MealComponent } from './meal/meal.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule,
+    SidebarModule.forRoot(),
+    RouterModule
   ],
   providers: [MiddleService],
   bootstrap: [AppComponent]

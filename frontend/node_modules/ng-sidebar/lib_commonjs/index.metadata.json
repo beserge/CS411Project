@@ -1,0 +1,1 @@
+[{"__symbolic":"module","version":4,"metadata":{},"exports":[{"from":"./sidebar-container.component","export":["SidebarContainer"]},{"from":"./sidebar.component","export":["Sidebar"]},{"from":"./close.directive","export":["CloseSidebar"]},{"from":"./sidebar.module","export":["SidebarModule"]}]}]
