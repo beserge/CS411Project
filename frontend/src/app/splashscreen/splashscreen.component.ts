@@ -17,6 +17,7 @@ export class SplashScreenComponent implements OnInit {
   @Input() animationType: SplashAnimationType = SplashAnimationType.SlideLeft;
 
   ngOnInit(): void {
+    return
     setTimeout(() => {
       let transitionStyle = "";
       switch (this.animationType) {

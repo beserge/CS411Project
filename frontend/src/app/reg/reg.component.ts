@@ -137,10 +137,34 @@ export class RegComponent  {
     let run:any = document.getElementById("run")
     this.running = run.checked
 
+    this.hide("workout_div", true)   
+    this.hide("account_div", false)     
+  }
+  
+  backAccount(){
+    this.hide("account_div", true)    
+    this.hide("workout_div", false)    
+  }
+
+  public email:any
+  public username:any
+  public password:any
+
+  doSubmitAccount(){
+    let mail:any = document.getElementById("email")
+    this.email = mail.value
+
+    let user:any = document.getElementById("user")
+    this.username = user.value
+
+    let pass:any = document.getElementById("pass")
+    this.password = pass.value
+
     this.getchilddata();
     this.router.navigateByUrl('/home');
   }
-  
+
+
   getchilddata(){
     let model = {
       height: Number(this.height),
@@ -166,6 +190,9 @@ export class RegComponent  {
       outdoor: Boolean(this.outdoor),
       cycling: Boolean(this.cycling),
       running: Boolean(this.running),
+      username: String(this.username),
+      email: String(this.email),
+      password: String(this.password),
     }
     console.log(model)
     this.service.doSubmit(model).subscribe(

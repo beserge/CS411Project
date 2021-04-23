@@ -11,12 +11,15 @@ import {HttpClientModule} from '@angular/common/http';
 import { MiddleService } from './service/middle.service';
 import { SplashScreenComponent } from './splashscreen/splashscreen.component';
 import { MealComponent } from './meal/meal.component';
+import { LoginComponent } from './login/login.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     SplashScreenComponent,
     RegComponent,
-    MealComponent
+    MealComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
