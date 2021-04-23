@@ -12,7 +12,7 @@ export class RegComponent  {
   public height:any
   public weight:any
   public weightlose:any
-  public timeframe:any
+  public timedays:any
 
   constructor(private formBuilder: FormBuilder, 
               private http: HttpClient, 
@@ -37,8 +37,8 @@ export class RegComponent  {
     let wl:any = document.getElementById("weightloss")
     this.weightlose = wl.value
     
-    let tf:any = document.getElementById("timeframe")
-    this.timeframe = tf.value
+    let td:any = document.getElementById("timedays")
+    this.timedays = td.value
   }
 
   public carbs:any
@@ -170,7 +170,7 @@ export class RegComponent  {
       height: Number(this.height),
       weight: Number(this.weight),
       goalLbs: Number(this.weightlose),
-      timeDays: Number(this.timeframe),
+      timeDays: Number(this.timedays),
       carbs: Number(this.carbs),
       fats: Number(this.fats),
       protein: Number(this.protein),
