@@ -24,5 +24,23 @@ export class MiddleService {
       return this.http.post(Config.baseURL+Config.texturl_meal+nuinfo,
         {observe:'body', responseType:'text'})
     }
-}
 
+
+    Add_workout(inputstring:any){
+      return this.http.post(Config.baseURL+'workout?'+inputstring,
+      {observe:'body', responseType:'text'})
+    }
+    
+    getWorkout(){
+      return this.http.post(Config.baseURL+'geturl',
+      {observe:'body', responseType:'text'})
+    }
+    deleteWorkout(id:any){return this.http.post(Config.baseURL+'deleteurl',
+    {observe:'body', responseType:'text'})
+    }
+
+    editWorkout(value:any){return this.http.post(Config.baseURL+'createurl',
+    {observe:'body', responseType:'text'})
+   }
+
+}

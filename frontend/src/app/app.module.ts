@@ -11,12 +11,18 @@ import {HttpClientModule} from '@angular/common/http';
 import { MiddleService } from './service/middle.service';
 import { SplashScreenComponent } from './splashscreen/splashscreen.component';
 import { MealComponent } from './meal/meal.component';
+import { FitnessComponent } from './fitness/fitness.component';
+import { AddComponent } from './add/add.component';
+import { EditComponent } from './edit/edit.component';
 @NgModule({
   declarations: [
     AppComponent,
     SplashScreenComponent,
     RegComponent,
-    MealComponent
+    MealComponent,
+    FitnessComponent,
+    AddComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
