@@ -13,7 +13,6 @@ var app = express();
 var mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/')
 
-require('./api/models/db');
 require('./passport');
 
 app.use(logger('dev'));
