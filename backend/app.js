@@ -2,6 +2,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var passport = require('passport');
 
 var cntextRouter = require('./routes/cntext');
 var regRouter = require('./routes/reg');
@@ -11,6 +12,9 @@ var app = express();
 
 var mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/')
+
+require('./api/models/db');
+require('./passport');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -30,6 +34,7 @@ app.all('*', function(req, res, next) {
     }
 });
 
+app.use(passport.initialize())
 app.use('/cntext', cntextRouter);
 app.use('/reg', regRouter);
 app.use('/meal', mealRouter);
