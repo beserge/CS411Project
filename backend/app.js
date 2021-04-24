@@ -10,10 +10,8 @@ var mealRouter = require('./routes/meal');
 
 var app = express();
 
-var mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/')
-
-require('./passport');
+require('./api/models/db');
+require('./api/config/passport');
 
 app.use(logger('dev'));
 app.use(express.json());
