@@ -3,7 +3,8 @@ var router = express.Router();
 var jwt = require('express-jwt');
 var auth = jwt({
   secret: 'MY_SECRET',
-  userProperty: 'payload'
+  userProperty: 'payload',
+  algorithms: ['RS256']
 });
 
 var ctrlProfile = require('../controllers/profile');
