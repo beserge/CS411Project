@@ -4,8 +4,10 @@ var router = express.Router();
 var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
 var mongoose = require('mongoose')
-require('../api/routes/index')
-//var RegData = mongoose.model('RegData')
+require('../api/models/users')
+require('../api/models/reg')
+
+var RegData = mongoose.model('RegData')
 var UserData = mongoose.model('User')
 
 router.post('/', function(req, res, next) {

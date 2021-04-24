@@ -36,6 +36,8 @@ app.all('*', function(req, res, next) {
 });
 
 app.use(passport.initialize())
+app.use('/api', routesApi)
+
 app.use('/cntext', cntextRouter);
 app.use('/reg', regRouter);
 app.use('/meal', mealRouter);
