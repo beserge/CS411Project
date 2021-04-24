@@ -8,10 +8,14 @@ var cntextRouter = require('./routes/cntext');
 var regRouter = require('./routes/reg');
 var mealRouter = require('./routes/meal');
 
+var routesApi = require('./api/routes/index'); //???
+
 var app = express();
 
 require('./api/models/db');
 require('./api/config/passport');
+
+var routesApi = require('./api/routes/index'); //???
 
 app.use(logger('dev'));
 app.use(express.json());
