@@ -20,10 +20,10 @@ module.exports.register = function(req, res) {
   //auth stuff
   var user = new User();
 
-  user.name = req.query.name;
-  user.email = req.query.email;
+  user.name = req.body.name;
+  user.email = req.body.email;
 
-  user.setPassword(req.query.password);
+  user.setPassword(req.body.password);
 
   //TODO catch this error
   user.save(function(err) {

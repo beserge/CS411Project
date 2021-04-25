@@ -34,6 +34,7 @@ app.all('*', function(req, res, next) {
 app.use(passport.initialize())
 app.use('/', routesApi)
 
+//FOR DEBUGGING! TURN OFF LATER!
 //app.use('/reg', regRouter);
 
 //RegData.deleteMany(function(err){if(err) console.log(err) })
