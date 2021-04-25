@@ -12,7 +12,15 @@ import { MiddleService } from './service/middle.service';
 import { SplashScreenComponent } from './splashscreen/splashscreen.component';
 import { MealComponent } from './meal/meal.component';
 import { FitnessComponent } from './fitness/fitness.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { SidebarModule } from "ng-sidebar";
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { BarChartsComponent } from './bar-charts/bar-charts.component';
+import { PieChartsComponent } from './pie-charts/pie-charts.component';
+import { GuageChartComponent } from './guage-chart/guage-chart.component';
+import { LinearGuageChartComponent } from './linear-guage-chart/linear-guage-chart.component';
+import { AreaLineChartsComponent } from './area-line-charts/area-line-charts.component';
+import { NumberCardChartComponent } from './number-card-chart/number-card-chart.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +28,13 @@ import { SidebarModule } from "ng-sidebar";
     SplashScreenComponent,
     RegComponent,
     MealComponent,
-    FitnessComponent
+    FitnessComponent,
+    BarChartsComponent,
+    PieChartsComponent,
+    GuageChartComponent,
+    LinearGuageChartComponent,
+    AreaLineChartsComponent,
+    NumberCardChartComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +43,7 @@ import { SidebarModule } from "ng-sidebar";
     ReactiveFormsModule,
     HttpClientModule,
     SidebarModule.forRoot(),
+    NgxChartsModule,
     RouterModule
   ],
   providers: [MiddleService],

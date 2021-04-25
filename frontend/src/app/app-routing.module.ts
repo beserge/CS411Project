@@ -6,12 +6,11 @@ import { MealComponent} from './meal/meal.component'
 import { FitnessComponent} from './fitness/fitness.component'
 import { DashboardComponent } from './dashboard/dashboard.component';
 
-
 const routes: Routes = [
 
   {path:'splash', component: SplashScreenComponent},
   {path:'reg', component: RegComponent},
-  {path:"", component: DashboardComponent},
+  {path:'dashboard', component: DashboardComponent},
   {path:'meal', component: MealComponent},
   {path:'fitness', component: FitnessComponent},
   {path: '**', redirectTo: 'splash'}
