@@ -20,6 +20,12 @@ export class LoginComponent  {
   constructor(private auth: AuthenticationService, private router: Router) {}
 
   doSubmit(){
+    let mail:any = document.getElementById("email")
+    this.credentials.email = mail.value
+
+    let pass:any = document.getElementById("pass")
+    this.credentials.password = pass.value
+
     this.auth.login(this.credentials).subscribe(() => {
       this.router.navigateByUrl('/profile');
     }, (err: any) => {

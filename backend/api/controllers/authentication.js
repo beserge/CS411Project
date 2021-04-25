@@ -52,6 +52,7 @@ module.exports.login = function(req, res) {
   //   });
   //   return;
   // }
+  console.log(req.body)
 
   passport.authenticate('local', function(err, user, info){
     var token;
