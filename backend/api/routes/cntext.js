@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/', function(req, res, next) {
+module.exports.text = function(req, res, next) {
     var axios = require('axios');
 
     var config = {
@@ -22,6 +22,5 @@ router.get('/', function(req, res, next) {
             console.log(error);
             res.status(500).send({message: "axios error, cntext"})
         });
-});
+}
 
-module.exports = router;

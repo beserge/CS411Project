@@ -4,9 +4,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var passport = require('passport');
 
-var cntextRouter = require('./routes/cntext');
 var regRouter = require('./routes/reg');
-var mealRouter = require('./routes/meal');
 
 var app = express();
 
@@ -36,9 +34,7 @@ app.all('*', function(req, res, next) {
 app.use(passport.initialize())
 app.use('/', routesApi)
 
-app.use('/cntext', cntextRouter);
 app.use('/reg', regRouter);
-app.use('/meal', mealRouter);
 
 //RegData.deleteMany(function(err){if(err) console.log(err) })
 

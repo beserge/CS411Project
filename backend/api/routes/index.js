@@ -9,6 +9,8 @@ var auth = jwt({
 
 var ctrlProfile = require('../controllers/profile');
 var ctrlAuth = require('../controllers/authentication');
+var mealRouter = require('../routes/meal')
+var cn = require('./cntext')
 
 // profile
 router.get('/profile', auth, ctrlProfile.profileRead);
@@ -16,5 +18,11 @@ router.get('/profile', auth, ctrlProfile.profileRead);
 // authentication
 router.post('/register', ctrlAuth.register);
 router.post('/login', ctrlAuth.login);
+
+//meal
+router.post('/meal', auth, mealRouter.mealpost);
+
+//calorie ninja api
+router.get('/cntext', cn.text)
 
 module.exports = router;
