@@ -27,7 +27,7 @@ export class LoginComponent  {
     this.credentials.password = pass.value
 
     this.auth.login(this.credentials).subscribe(() => {
-      this.router.navigateByUrl('/profile');
+      this.router.navigateByUrl('/home');
     }, (err: any) => {
       console.error(err);
     }); 

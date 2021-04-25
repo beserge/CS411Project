@@ -11,12 +11,14 @@ var ctrlProfile = require('../controllers/profile');
 var ctrlAuth = require('../controllers/authentication');
 var mealRouter = require('../routes/meal')
 var cn = require('./cntext')
+var regRouter = require('./healthReg')
 
 // profile
 router.get('/profile', auth, ctrlProfile.profileRead);
 
 // authentication
 router.post('/reg', ctrlAuth.register);
+router.post('/healthreg', regRouter.healthreg)
 router.post('/login', ctrlAuth.login);
 
 //meal

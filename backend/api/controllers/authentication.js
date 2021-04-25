@@ -1,13 +1,13 @@
 var passport = require('passport');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
-var RegData = mongoose.model('RegData');
 
 var sendJSONresponse = function(res, status, content) {
   res.status(status);
   res.json(content);
 };
 
+//register username and password
 module.exports.register = function(req, res) {
 
   // if(!req.body.name || !req.body.email || !req.body.password) {
@@ -34,14 +34,6 @@ module.exports.register = function(req, res) {
       "token" : token
     });
   });
-
-  //fitness reg data
-  let regdata = new RegData(req.query);
-  regdata.save(function (err){ 
-      if (err){
-          console.log(err) 
-          res.status(500).send({message: "reg, DB add error"})
-      }})
 };
 
 module.exports.login = function(req, res) {

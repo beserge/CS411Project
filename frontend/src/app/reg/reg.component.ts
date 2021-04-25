@@ -3,10 +3,13 @@ import { FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { MiddleService } from '../service/middle.service';
 import { Router } from '@angular/router';
+import { AuthenticationService, TokenPayload } from '../authentication.service';
+
 @Component({
   selector: 'app-reg',
   templateUrl: './reg.component.html',
-  styleUrls: ['./reg.component.css']
+  styleUrls: ['./reg.component.css'],
+  providers: [AuthenticationService]
 })
 export class RegComponent  {
   public height:any
@@ -17,7 +20,8 @@ export class RegComponent  {
   constructor(private formBuilder: FormBuilder, 
               private http: HttpClient, 
               private service: MiddleService,
-              private router: Router) { }
+              private router: Router,
+              private auth: AuthenticationService) { }
 
   public hide(name:string, val:Boolean){
     let div:any = document.getElementById(name)
@@ -146,25 +150,41 @@ export class RegComponent  {
     this.hide("workout_div", false)    
   }
 
-  public email:any
-  public username:any
-  public password:any
+
 
   doSubmitAccount(){
-    let mail:any = document.getElementById("email")
-    this.email = mail.value
-
-    let user:any = document.getElementById("user")
-    this.username = user.value
-
-    let pass:any = document.getElementById("pass")
-    this.password = pass.value
-
-    this.getchilddata();
-    this.router.navigateByUrl('/home');
+    this.getchilddata()
+    this.register()
   }
 
+  credentials: TokenPayload = {
+    email: '',
+    name: '',
+    password: ''
+  };
 
+  //send over the account reg data
+  register(){
+    let mail:any = document.getElementById("email")
+    this.credentials.email = mail.value
+
+    let user:any = document.getElementById("user")
+    this.credentials.name = user.value
+
+    let pass:any = document.getElementById("pass")
+    this.credentials.password = pass.value
+   
+    console.log(this.credentials) 
+
+    this.auth.register(this.credentials).subscribe(() => {
+        this.router.navigateByUrl('/login');
+      }, 
+      (err) => {
+        console.error(err);
+      });
+  }
+
+  //send over the health reg data
   getchilddata(){
     let model = {
       height: Number(this.height),
@@ -190,12 +210,9 @@ export class RegComponent  {
       outdoor: Boolean(this.outdoor),
       cycling: Boolean(this.cycling),
       running: Boolean(this.running),
-      username: String(this.username),
-      email: String(this.email),
-      password: String(this.password),
     }
+
     console.log(model)
-    this.service.doSubmit(model).subscribe(
-    (response)=>{})
+    this.service.doSubmit(model).subscribe()
   } 
 }
