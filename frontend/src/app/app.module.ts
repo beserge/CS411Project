@@ -12,6 +12,8 @@ import { MiddleService } from './service/middle.service';
 import { SplashScreenComponent } from './splashscreen/splashscreen.component';
 import { MealComponent } from './meal/meal.component';
 import { LoginComponent } from './login/login.component';
+import { AuthenticationService } from './authentication.service';
+import { AuthGuardService } from './auth-guard.service';
 
 @NgModule({
   declarations: [
