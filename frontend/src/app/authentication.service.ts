@@ -65,9 +65,9 @@ export class AuthenticationService {
     let base;
 
     if (method === 'post') {
-      base = this.http.post(`/${type}`, user);
+      base = this.http.post(`http://localhost:3000/${type}`, user);
     } else {
-      base = this.http.get(`/${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
+      base = this.http.get(`http://localhost:3000/${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
     }
 
     const request = base.pipe(
