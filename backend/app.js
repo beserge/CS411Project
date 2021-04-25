@@ -34,7 +34,7 @@ app.all('*', function(req, res, next) {
 app.use(passport.initialize())
 app.use('/', routesApi)
 
-app.use('/reg', regRouter);
+//app.use('/reg', regRouter);
 
 //RegData.deleteMany(function(err){if(err) console.log(err) })
 

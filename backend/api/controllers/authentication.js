@@ -1,6 +1,7 @@
 var passport = require('passport');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var RegData = mongoose.model('RegData');
 
 var sendJSONresponse = function(res, status, content) {
   res.status(status);
@@ -16,13 +17,15 @@ module.exports.register = function(req, res) {
   //   return;
   // }
 
+  //auth stuff
   var user = new User();
 
-  user.name = req.body.name;
-  user.email = req.body.email;
+  user.name = req.query.name;
+  user.email = req.query.email;
 
-  user.setPassword(req.body.password);
+  user.setPassword(req.query.password);
 
+  //TODO catch this error
   user.save(function(err) {
     var token;
     token = user.generateJwt();
@@ -32,6 +35,13 @@ module.exports.register = function(req, res) {
     });
   });
 
+  //fitness reg data
+  let regdata = new RegData(req.query);
+  regdata.save(function (err){ 
+      if (err){
+          console.log(err) 
+          res.status(500).send({message: "reg, DB add error"})
+      }})
 };
 
 module.exports.login = function(req, res) {

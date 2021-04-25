@@ -16,7 +16,7 @@ var cn = require('./cntext')
 router.get('/profile', auth, ctrlProfile.profileRead);
 
 // authentication
-router.post('/register', ctrlAuth.register);
+router.post('/reg', ctrlAuth.register);
 router.post('/login', ctrlAuth.login);
 
 //meal
