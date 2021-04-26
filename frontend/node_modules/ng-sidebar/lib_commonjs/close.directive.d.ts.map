@@ -1,0 +1,1 @@
+{"version":3,"file":"close.directive.d.ts","sources":["close.directive.d.ts"],"names":[],"mappings":"AAAA;;AACA;AACA;AACA;AACA;;;AACA","sourcesContent":["import { Sidebar } from './sidebar.component';\nexport declare class CloseSidebar {\n    private _sidebar;\n    constructor(_sidebar: Sidebar);\n    _onClick(): void;\n}\n"]}

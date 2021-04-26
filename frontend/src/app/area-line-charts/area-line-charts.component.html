@@ -1,0 +1,34 @@
+<table>
+    <tr>
+        <td>
+            <ngx-charts-line-chart [results]="productSalesMulti" [view]="view" [scheme]="colorScheme" [legend]="legend"
+                [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis" [yAxis]="yAxis"
+                [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [timeline]="timeline">
+            </ngx-charts-line-chart>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <ngx-charts-area-chart [results]="productSalesMulti" [view]="view" [scheme]="colorScheme" [legend]="legend"
+                [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis" [yAxis]="yAxis"
+                [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [timeline]="timeline">
+            </ngx-charts-area-chart>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <ngx-charts-area-chart-stacked [results]="productSalesMulti" [view]="view" [scheme]="colorScheme"
+                [legend]="legend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis"
+                [yAxis]="yAxis" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [timeline]="timeline">
+            </ngx-charts-area-chart-stacked>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <ngx-charts-area-chart-normalized [results]="productSalesMulti" [view]="view" [scheme]="colorScheme"
+                [legend]="legend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis"
+                [yAxis]="yAxis" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [timeline]="timeline">
+            </ngx-charts-area-chart-normalized>
+        </td>
+    </tr>
+</table>

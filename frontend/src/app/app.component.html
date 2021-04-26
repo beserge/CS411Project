@@ -1,2 +1,21 @@
-
-<router-outlet></router-outlet>
+<app-splashscreen></app-splashscreen>
+<ng-sidebar-container>
+    <!-- Sidebar -->
+    <ng-sidebar [opened]="opened">
+        <p> Navigation Bar Contents</p>
+        <button (click)="toggleSidebar()">Close Navigation Bar</button>
+        <ul class="menu">
+            <li><a routerLink="/dashboard" (click)="toggleSidebar()">Dashboard</a></li>
+            <li><a routerLink="/meal" (click)="toggleSidebar()">Meal Entering</a></li>
+            <li><a routerLink="/fitness" (click)="toggleSidebar()">Fitness User Story</a></li>
+        </ul>
+    </ng-sidebar>
+    <div ng-sidebar-content>
+        <!-- Page Header -->
+        <button (click)="toggleSidebar()">
+            Open Navigation Bar
+        </button>
+        <!-- Page Body -->
+        <router-outlet></router-outlet>
+    </div>
+<ng-sidebar-container>
