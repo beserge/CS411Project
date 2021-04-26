@@ -6,7 +6,7 @@ var logger = require('morgan');
 var cntextRouter = require('./routes/cntext');
 var regRouter = require('./routes/reg');
 var mealRouter = require('./routes/meal');
-var workoutRouter = require('./routes/workout');
+var workoutRouter = require('./routes/fitness');
 
 var app = express();
 
@@ -35,7 +35,7 @@ app.all('*', function(req, res, next) {
 app.use('/cntext', cntextRouter)
 app.use('/reg', regRouter)
 app.use('/meal', mealRouter)
-app.use('/workout', workoutRouter)
+app.use('/fitness', workoutRouter)
 
 //RegData.deleteMany(function(err){if(err) console.log(err) })
 

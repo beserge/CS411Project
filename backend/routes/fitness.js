@@ -4,7 +4,7 @@ var router = express.Router();
 var mongoose = require('mongoose')
 const { Schema } = mongoose
 const WorkoutSchema = new Schema({
-    time: Number,
+    time: String,
     day: Number,
     month: Number,
     year: Number,
@@ -23,6 +23,10 @@ let WorkoutData = mongoose.model('WorkoutData', WorkoutSchema)
 router.post('/', function(req, res, next) {
     console.log(req.query)
     let workoutdata = new WorkoutData(req.query);
+
+    //defaults
+    workoutdata.completed = false
+
     workoutdata.save(function (err){ 
         if (err){
             console.log(err) 

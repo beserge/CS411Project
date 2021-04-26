@@ -27,15 +27,15 @@ export class MiddleService {
 
 
     Add_workout(inputstring:any){
-      return this.http.post(Config.baseURL+'workout?'+inputstring,
+      return this.http.post(Config.baseURL+'fitness?'+inputstring,
       {observe:'body', responseType:'text'})
     }
     
     getWorkout(){
-      return this.http.post(Config.baseURL+'geturl',
+      return this.http.get(Config.baseURL+'fitness',
       {observe:'body', responseType:'text'})
     }
-    deleteWorkout(id:any){return this.http.post(Config.baseURL+'deleteurl',
+    deleteWorkout(id:any){return this.http.delete(Config.baseURL+'fitness',
     {observe:'body', responseType:'text'})
     }
 
