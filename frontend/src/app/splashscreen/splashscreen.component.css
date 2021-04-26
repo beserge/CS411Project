@@ -36,10 +36,10 @@
       .app-loader {
         background: url("./../../assets/three-dots.svg");
         background-repeat: no-repeat;
-        max-width: 100%;
+        max-width: 120%;
         background-position: center;
-        background-size: medium;
-        width: 80px;
-        height: 80px;
+        background-size: small;
+        width: 120px;
+        height: 100px;
     }
     

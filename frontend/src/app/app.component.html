@@ -2,10 +2,10 @@
 <ng-sidebar-container>
     <!-- Sidebar -->
     <ng-sidebar [opened]="opened">
-        <p> Sidebar Contents</p>
-        <button (click)="toggleSidebar()">Close Sidebar</button>
+        <p> Navigation Bar Contents</p>
+        <button (click)="toggleSidebar()">Close Navigation Bar</button>
         <ul class="menu">
-            <li><a routerLink="/" (click)="toggleSidebar()">Dashboard</a></li>
+            <li><a routerLink="/dashboard" (click)="toggleSidebar()">Dashboard</a></li>
             <li><a routerLink="/meal" (click)="toggleSidebar()">Meal Entering</a></li>
             <li><a routerLink="/fitness" (click)="toggleSidebar()">Fitness User Story</a></li>
         </ul>
@@ -13,7 +13,7 @@
     <div ng-sidebar-content>
         <!-- Page Header -->
         <button (click)="toggleSidebar()">
-            Open Sidebar
+            Open Navigation Bar
         </button>
         <!-- Page Body -->
         <router-outlet></router-outlet>
