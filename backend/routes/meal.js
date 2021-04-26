@@ -27,6 +27,7 @@ router.post('/', function(req, res, next) {
         if (err){
             console.log(err) 
             res.status(500).send({message: "meal, DB save error"})
+            return
         }})
 
     //check database contents
