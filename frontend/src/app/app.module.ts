@@ -11,7 +11,6 @@ import { MiddleService } from './service/middle.service';
 import { SplashScreenComponent } from './splashscreen/splashscreen.component';
 import { MealComponent } from './meal/meal.component';
 import { FitnessComponent } from './fitness/fitness.component';
-<<<<<<< HEAD
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SidebarModule } from "ng-sidebar";
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -21,11 +20,8 @@ import { GuageChartComponent } from './guage-chart/guage-chart.component';
 import { LinearGuageChartComponent } from './linear-guage-chart/linear-guage-chart.component';
 import { AreaLineChartsComponent } from './area-line-charts/area-line-charts.component';
 import { NumberCardChartComponent } from './number-card-chart/number-card-chart.component';
-
-=======
 import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
->>>>>>> master
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,18 +29,15 @@ import { EditComponent } from './edit/edit.component';
     RegComponent,
     MealComponent,
     FitnessComponent,
-<<<<<<< HEAD
     DashboardComponent,
     BarChartsComponent,
     PieChartsComponent,
     GuageChartComponent,
     LinearGuageChartComponent,
     AreaLineChartsComponent,
-    NumberCardChartComponent
-=======
+    NumberCardChartComponent,
     AddComponent,
     EditComponent
->>>>>>> master
   ],
   imports: [
     BrowserModule,

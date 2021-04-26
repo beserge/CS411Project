@@ -3,14 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { SplashScreenComponent } from './splashscreen/splashscreen.component';
 import { RegComponent } from './reg/reg.component';
 import { MealComponent} from './meal/meal.component'
-<<<<<<< HEAD
 import { FitnessComponent} from './fitness/fitness.component'
 import { DashboardComponent } from './dashboard/dashboard.component';
-=======
-import { FitnessComponent } from './fitness/fitness.component';
 import { AddComponent } from './add/add.component';
-
->>>>>>> master
 
 const routes: Routes = [
 
@@ -19,10 +14,7 @@ const routes: Routes = [
   {path:'dashboard', component: DashboardComponent},
   {path:'meal', component: MealComponent},
   {path:'fitness', component: FitnessComponent},
-<<<<<<< HEAD
-=======
   {path:'add', component: AddComponent},
->>>>>>> master
   {path: '**', redirectTo: 'splash'}
 ];
 
