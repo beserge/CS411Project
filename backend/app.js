@@ -11,7 +11,7 @@ var workoutRouter = require('./routes/fitness');
 var app = express();
 
 var mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/')
+mongoose.connect('mongodb://localhost/', { useNewUrlParser: true })
 
 app.use(logger('dev'));
 app.use(express.json());

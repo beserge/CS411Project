@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -12,6 +11,15 @@ import { MiddleService } from './service/middle.service';
 import { SplashScreenComponent } from './splashscreen/splashscreen.component';
 import { MealComponent } from './meal/meal.component';
 import { FitnessComponent } from './fitness/fitness.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { SidebarModule } from "ng-sidebar";
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { BarChartsComponent } from './bar-charts/bar-charts.component';
+import { PieChartsComponent } from './pie-charts/pie-charts.component';
+import { GuageChartComponent } from './guage-chart/guage-chart.component';
+import { LinearGuageChartComponent } from './linear-guage-chart/linear-guage-chart.component';
+import { AreaLineChartsComponent } from './area-line-charts/area-line-charts.component';
+import { NumberCardChartComponent } from './number-card-chart/number-card-chart.component';
 import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
 @NgModule({
@@ -21,6 +29,13 @@ import { EditComponent } from './edit/edit.component';
     RegComponent,
     MealComponent,
     FitnessComponent,
+    DashboardComponent,
+    BarChartsComponent,
+    PieChartsComponent,
+    GuageChartComponent,
+    LinearGuageChartComponent,
+    AreaLineChartsComponent,
+    NumberCardChartComponent,
     AddComponent,
     EditComponent
   ],
@@ -30,7 +45,9 @@ import { EditComponent } from './edit/edit.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule,
+    SidebarModule.forRoot(),
+    NgxChartsModule,
+    RouterModule
   ],
   providers: [MiddleService],
   bootstrap: [AppComponent]

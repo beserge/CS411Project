@@ -1,0 +1,1 @@
+{"version":3,"file":"index.d.ts","sources":["index.d.ts"],"names":[],"mappings":"AAAA;AACA;AACA;AACA","sourcesContent":["export { SidebarContainer } from './sidebar-container.component';\nexport { Sidebar } from './sidebar.component';\nexport { CloseSidebar } from './close.directive';\nexport { SidebarModule } from './sidebar.module';\n"]}

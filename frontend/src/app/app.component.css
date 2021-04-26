@@ -1,0 +1,24 @@
+ng-sidebar-container{
+    height: 100vh;
+}
+
+::ng-deep .ng-sidebar{
+    background-color: white;
+    width: 300px;
+    padding: 2em 3em;
+    box-shadow: 0 0 2.5em rgba(85, 85, 85, 0.5);
+}
+
+.menu{
+    margin-top: 2em;
+    display: block;
+}
+
+.menu li {
+    margin-bottom: 15px;
+}
+
+.menu li a {
+    display: block;
+    width: 100%;
+}

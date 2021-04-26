@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+
 import { MiddleService } from '../service/middle.service';
 import { Router } from '@angular/router';
 import { FormsModule} from '@angular/forms';
+
 @Component({
   selector: 'app-fitness',
   templateUrl: './fitness.component.html',
   styleUrls: ['./fitness.component.css']
 })
+
 export class FitnessComponent{
   constructor(private router: Router, private apiService: MiddleService) { }
 
@@ -40,6 +43,3 @@ export class FitnessComponent{
   };
   
 }
-  
-
-
