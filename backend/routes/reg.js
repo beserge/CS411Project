@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-var crypto = require('crypto');
-var jwt = require('jsonwebtoken');
 var mongoose = require('mongoose')
 require('../api/models/users')
 require('../api/models/reg')

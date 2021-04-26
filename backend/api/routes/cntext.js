@@ -1,5 +1,4 @@
 var express = require('express');
-var router = express.Router();
 
 module.exports.text = function(req, res, next) {
     var axios = require('axios');

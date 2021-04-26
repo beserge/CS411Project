@@ -49,3 +49,4 @@ process.on('SIGTERM', function() {
 require('./users');
 require('./reg')
 require('./meal')
+require('./fitness')

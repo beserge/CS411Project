@@ -1,26 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-var mongoose = require('mongoose')
-const { Schema } = mongoose
-const WorkoutSchema = new Schema({
-    time: String,
-    day: Number,
-    month: Number,
-    year: Number,
-    isCycling: Boolean,
-    isRunning: Boolean,
-    isIndoor: Boolean,
-    isOutdoor: Boolean,
-    calories: Number,
-    duration: Number, //minutes
-    completed: Boolean,
-});
-
-let WorkoutData = mongoose.model('WorkoutData', WorkoutSchema)
-
 //add new workout
-router.post('/', function(req, res, next) {
+module.exports.fitpost = function(req, res, next) {
     console.log(req.query)
     let workoutdata = new WorkoutData(req.query);
 
@@ -35,11 +17,11 @@ router.post('/', function(req, res, next) {
         }})
 
     res.status(200).send({message: "Workout added to DB"})
-})
+}
 
 //get all workout data
 //TODO just get data for one user
-router.get('/', function(req, res, next) {
+module.exports.fitget = function(req, res, next) {
     WorkoutData.find(function(err, items){
         if(err) {
             console.log(err)
@@ -50,11 +32,11 @@ router.get('/', function(req, res, next) {
         console.log(reply)
         res.send(reply)
     })
-})
+}
 
 //delete workout by id
 //TODO confirm user owns that workout
-router.delete('/', function(req, res, next) {
+module.exports.fitdelete = function(req, res, next) {
     let deldata = WorkoutData.deleteMany({"_id": req.query.id}, function (err, result) {
       if(err){ 
           console.log(err)
@@ -69,5 +51,4 @@ router.delete('/', function(req, res, next) {
         res.status(200).send({message: "Workout removed from DB"})
       }
     })
-})
-module.exports = router
+}
