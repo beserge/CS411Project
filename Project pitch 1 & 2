@@ -1,0 +1,22 @@
+Project Pitch one and two
+
+1.
+Meal planning section, CalorieNinjas
+Workout plans, google calendar api
+Fitbit, strava, apple healthkit api.
+
+Our first project pitch is a general fitness and health tracking application. It will offer the ability to count calories and other nutritional information, and create weekly meal plans. It will also allow for the creation of workout routines and tracking. As a stretch goal, we would like to include integration with Google Calendar for workout and meal scheduling, as well as fitbit, strava, or apple health kit for further fitness tracking and health suggestions.
+
+
+2. 
+Cryptocurrency dashboard. Chaingateway API (Ethereum and Tron blockchains), News APIs including NY Times Newswire, twitter, reddit.
+
+Our second project will focus on tracking real-time cryptocurrency rates, for example ERC-20 tokens for the Ethereum Blockchain, by using APIs that store information about cryptocurrency tokens. The blockchain API will only provide basic information about a particular token, including supply, number of holders, transfers etc. We will then integrate News APIs, like New York Times, twitter, and reddit, to offer financial advice, future investment recommendations, and past performance to better inform the user. Users will be able to tweak their personal crypto newsfeed to include the information they most want to see.
+
+https://chaingateway.io/?utm_source=tokengateway.io
+https://www.postman.com/
+
+
+
+
+
