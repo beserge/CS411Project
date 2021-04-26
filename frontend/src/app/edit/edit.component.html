@@ -1,0 +1,17 @@
+<div class="col-md-6 user-container">
+    <h2 class="text-center">Edit Workout</h2>
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="Exercises">Exercises:</label>
+        <input type="text" formControlName="Exercises" placeholder="Exercises" name="Exercises" class="form-control" id="Exercises" readonly="true">
+      </div>
+  
+      <div class="form-group">
+        <label for="Time">Time:</label>
+        <input formControlName="Time"  name="Time" class="form-control" id="Time">
+      </div>
+  
+
+      <button class="submit">Update</button>
+    </form>
+  </div>

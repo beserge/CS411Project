@@ -1,2 +1,19 @@
-<p>fitness works!</p>
-<h2><a [routerLink] = "'/dashboard'">Back to Dashboard</a></h2>
+
+<div class="container">
+  <h2 style="margin: auto"> User Details</h2>
+  <button class="btn btn-danger" style="width:100px" (click)="addWorkout()"> Add Workout</button>
+  <table class="table table-striped">
+    <tbody>
+    <tr *ngFor="let workout of workouts">
+      <td class="hidden"></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><button class="btn btn-success" (click)="deleteWorkout(workout)"> Delete</button>
+        <button class="btn btn-success" (click)="editWorkout(workout)" style="margin-left: 20px;"> Edit</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
