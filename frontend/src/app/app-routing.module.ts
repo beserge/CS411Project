@@ -10,7 +10,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddComponent } from './add/add.component';
 
 const routes: Routes = [
-
   {path:'splash', component: SplashScreenComponent},
   {path:'reg', component: RegComponent},
   {path:'dashboard', component: DashboardComponent},

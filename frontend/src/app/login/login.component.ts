@@ -11,11 +11,24 @@ import { AuthenticationService, TokenPayload } from '../authentication.service';
   styleUrls: ['./login.component.css'],
   providers: [AuthenticationService]
 })
-export class LoginComponent  {
+export class LoginComponent  implements OnInit{
   credentials: TokenPayload = {
     email: '',
     password: ''
   };
+
+  ngOnInit(){
+    //hide the sidebar
+      let sb_opened_dom = document.getElementById("sb_opened")
+      let sb_button_dom = document.getElementById("sb_button")
+      
+      if(sb_opened_dom){
+        sb_opened_dom.hidden = true
+      }
+      if(sb_button_dom){
+        sb_button_dom.hidden = true
+      }
+  }
 
   constructor(private auth: AuthenticationService, private router: Router) {}
 

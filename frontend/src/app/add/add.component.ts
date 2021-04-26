@@ -4,14 +4,14 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import { FitnessComponent } from '../fitness/fitness.component';
 import { MiddleService } from '../service/middle.service';
+
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.css']
 })
 export class AddComponent implements OnInit {
-
-  constructor(private formBuilder: FormBuilder,private router: Router, private apiService: MiddleService) { }
+  constructor(private formBuilder: FormBuilder,private router: Router, private apiService: MiddleService,) { }
 
   addForm: FormGroup | any;
   public workouttypes = ['isOutdoor','isIndoor','isCycling','isRunning']

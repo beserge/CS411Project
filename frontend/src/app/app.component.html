@@ -1,7 +1,6 @@
-<app-splashscreen></app-splashscreen>
 <ng-sidebar-container>
     <!-- Sidebar -->
-    <ng-sidebar [opened]="opened">
+    <ng-sidebar [opened]="opened" id="sb_opened">
         <p> Navigation Bar Contents</p>
         <button (click)="toggleSidebar()">Close Navigation Bar</button>
         <ul class="menu">
@@ -12,10 +11,10 @@
     </ng-sidebar>
     <div ng-sidebar-content>
         <!-- Page Header -->
-        <button (click)="toggleSidebar()">
+        <button (click)="toggleSidebar()" id="sb_button">
             Open Navigation Bar
         </button>
         <!-- Page Body -->
         <router-outlet></router-outlet>
     </div>
-<ng-sidebar-container>
+</ng-sidebar-container>

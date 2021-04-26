@@ -11,7 +11,20 @@ import { AuthenticationService, TokenPayload } from '../authentication.service';
   styleUrls: ['./reg.component.css'],
   providers: [AuthenticationService]
 })
-export class RegComponent  {
+export class RegComponent implements OnInit {
+  ngOnInit(){
+    //hide the sidebar
+    let sb_opened_dom = document.getElementById("sb_opened")
+    let sb_button_dom = document.getElementById("sb_button")
+    
+    if(sb_opened_dom){
+      sb_opened_dom.hidden = true
+    }
+    if(sb_button_dom){
+      sb_button_dom.hidden = true
+    }
+  }
+
   public height:any
   public weight:any
   public weightlose:any
