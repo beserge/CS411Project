@@ -2,48 +2,23 @@ var express = require('express');
 var router = express.Router();
 
 var mongoose = require('mongoose')
-const { Schema } = mongoose
-const RegSchema = new Schema({
-        height: Number,
-        weight: Number,
-        gender: String,
-        goalLbs: Number,
-        timeDays: Number,
-		carbs: Number,
-		fats: Number,
-		protein: Number,
-		isKosher: Boolean,
-		isHalal: Boolean,
-		isVegetarian: Boolean,
-		isVegan: Boolean,	
-		sunday: Boolean,
-		monday: Boolean,
-		tuesday: Boolean,
-		wednesday: Boolean,
-		thursday: Boolean,
-		friday: Boolean,
-		saturday: Boolean,
-        workoutTimes: Number, //preferred time in min since midnight
-		indoor: Boolean,
-		outdoor: Boolean,
-		cycling: Boolean,
-		running: Boolean,
-});
+require('../api/models/users')
+require('../api/models/reg')
 
-let RegData = mongoose.model('RegData', RegSchema)
+var RegData = mongoose.model('RegData')
+var UserData = mongoose.model('User')
 
-router.post('/', function(req, res, next) {
-    console.log(req.query)
-    let regdata = new RegData(req.query);
-    regdata.save(function (err){ 
-        if (err){
-            console.log(err) 
-            res.status(500).send({message: "reg, DB add error"})
-            return
-        }})
-
-    //check database contents
+//debug and delete
+router.delete('/', function(req, res, next){
     RegData.find(function(err, items){
+        if(err) {
+            return console.error(err)
+        }
+        let reply = JSON.stringify(items)
+        console.log(reply)
+    })
+
+    UserData.find(function(err, items){
         if(err) {
             return console.error(err)
         }
@@ -51,7 +26,20 @@ router.post('/', function(req, res, next) {
         console.log(reply)
     })
 
-    res.status(200).send({message: "Reg added to DB"})
+    RegData.deleteMany({}, function(){})
+    UserData.deleteMany({}, function(){})
+    res.status(200).send({message: "delete all reg"})
+})
+
+router.get('/', function(err, res){
+    UserData.find(function(err, items){
+        if(err) {
+            return console.error(err)
+        }
+            let reply = JSON.stringify(items)
+        console.log(reply)
+    })
+    res.status(200).send({message: "yeah!"})
 })
 
 module.exports = router

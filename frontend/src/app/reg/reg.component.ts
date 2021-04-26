@@ -3,21 +3,38 @@ import { FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { MiddleService } from '../service/middle.service';
 import { Router } from '@angular/router';
+import { AuthenticationService, TokenPayload } from '../authentication.service';
+
 @Component({
   selector: 'app-reg',
   templateUrl: './reg.component.html',
-  styleUrls: ['./reg.component.css']
+  styleUrls: ['./reg.component.css'],
+  providers: [AuthenticationService]
 })
-export class RegComponent  {
+export class RegComponent implements OnInit {
+  ngOnInit(){
+    //hide the sidebar
+    let sb_opened_dom = document.getElementById("sb_opened")
+    let sb_button_dom = document.getElementById("sb_button")
+    
+    if(sb_opened_dom){
+      sb_opened_dom.hidden = true
+    }
+    if(sb_button_dom){
+      sb_button_dom.hidden = true
+    }
+  }
+
   public height:any
   public weight:any
   public weightlose:any
-  public timeframe:any
+  public timedays:any
 
   constructor(private formBuilder: FormBuilder, 
               private http: HttpClient, 
               private service: MiddleService,
-              private router: Router) { }
+              private router: Router,
+              private auth: AuthenticationService) { }
 
   public hide(name:string, val:Boolean){
     let div:any = document.getElementById(name)
@@ -37,8 +54,8 @@ export class RegComponent  {
     let wl:any = document.getElementById("weightloss")
     this.weightlose = wl.value
     
-    let tf:any = document.getElementById("timeframe")
-    this.timeframe = tf.value
+    let td:any = document.getElementById("timedays")
+    this.timedays = td.value
   }
 
   public carbs:any
@@ -137,16 +154,56 @@ export class RegComponent  {
     let run:any = document.getElementById("run")
     this.running = run.checked
 
-    this.getchilddata();
-    this.router.navigateByUrl('/home');
+    this.hide("workout_div", true)   
+    this.hide("account_div", false)     
   }
   
+  backAccount(){
+    this.hide("account_div", true)    
+    this.hide("workout_div", false)    
+  }
+
+
+
+  doSubmitAccount(){
+    this.getchilddata()
+    this.register()
+  }
+
+  credentials: TokenPayload = {
+    email: '',
+    name: '',
+    password: ''
+  };
+
+  //send over the account reg data
+  register(){
+    let mail:any = document.getElementById("email")
+    this.credentials.email = mail.value
+
+    let user:any = document.getElementById("user")
+    this.credentials.name = user.value
+
+    let pass:any = document.getElementById("pass")
+    this.credentials.password = pass.value
+   
+    console.log(this.credentials) 
+
+    this.auth.register(this.credentials).subscribe(() => {
+        this.router.navigateByUrl('/login');
+      }, 
+      (err) => {
+        console.error(err);
+      });
+  }
+
+  //send over the health reg data
   getchilddata(){
     let model = {
       height: Number(this.height),
       weight: Number(this.weight),
       goalLbs: Number(this.weightlose),
-      timeDays: Number(this.timeframe),
+      timeDays: Number(this.timedays),
       carbs: Number(this.carbs),
       fats: Number(this.fats),
       protein: Number(this.protein),
@@ -167,8 +224,8 @@ export class RegComponent  {
       cycling: Boolean(this.cycling),
       running: Boolean(this.running),
     }
+
     console.log(model)
-    this.service.doSubmit(model).subscribe(
-    (response)=>{})
+    this.service.doSubmit(model).subscribe()
   } 
 }

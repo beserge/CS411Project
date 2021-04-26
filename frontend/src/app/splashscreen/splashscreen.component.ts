@@ -17,6 +17,17 @@ export class SplashScreenComponent implements OnInit {
   @Input() animationType: SplashAnimationType = SplashAnimationType.SlideLeft;
 
   ngOnInit(): void {
+    //hide sidebar
+      let sb_opened_dom = document.getElementById("sb_opened")
+      let sb_button_dom = document.getElementById("sb_button")
+      
+      if(sb_opened_dom){
+        sb_opened_dom.hidden = true
+      }
+      if(sb_button_dom){
+        sb_button_dom.hidden = true
+      }
+    return
     setTimeout(() => {
       let transitionStyle = "";
       switch (this.animationType) {

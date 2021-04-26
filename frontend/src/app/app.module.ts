@@ -10,9 +10,13 @@ import {HttpClientModule} from '@angular/common/http';
 import { MiddleService } from './service/middle.service';
 import { SplashScreenComponent } from './splashscreen/splashscreen.component';
 import { MealComponent } from './meal/meal.component';
+import { LoginComponent } from './login/login.component';
+import { AuthenticationService } from './authentication.service';
+import { AuthGuardService } from './auth-guard.service';
+
 import { FitnessComponent } from './fitness/fitness.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { SidebarModule } from "ng-sidebar";
+import { Sidebar, SidebarModule } from "ng-sidebar";
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BarChartsComponent } from './bar-charts/bar-charts.component';
 import { PieChartsComponent } from './pie-charts/pie-charts.component';
@@ -22,12 +26,14 @@ import { AreaLineChartsComponent } from './area-line-charts/area-line-charts.com
 import { NumberCardChartComponent } from './number-card-chart/number-card-chart.component';
 import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     SplashScreenComponent,
     RegComponent,
     MealComponent,
+    LoginComponent,
     FitnessComponent,
     DashboardComponent,
     BarChartsComponent,
@@ -37,7 +43,7 @@ import { EditComponent } from './edit/edit.component';
     AreaLineChartsComponent,
     NumberCardChartComponent,
     AddComponent,
-    EditComponent
+    EditComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +53,7 @@ import { EditComponent } from './edit/edit.component';
     HttpClientModule,
     SidebarModule.forRoot(),
     NgxChartsModule,
-    RouterModule
+    RouterModule,
   ],
   providers: [MiddleService],
   bootstrap: [AppComponent]

@@ -2,16 +2,16 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var passport = require('passport');
 
-var cntextRouter = require('./routes/cntext');
 var regRouter = require('./routes/reg');
-var mealRouter = require('./routes/meal');
-var workoutRouter = require('./routes/fitness');
 
 var app = express();
 
-var mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/', { useNewUrlParser: true })
+require('./api/models/db');
+require('./api/config/passport');
+
+var routesApi = require('./api/routes/index');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -32,10 +32,11 @@ app.all('*', function(req, res, next) {
     }
 });
 
-app.use('/cntext', cntextRouter)
-app.use('/reg', regRouter)
-app.use('/meal', mealRouter)
-app.use('/fitness', workoutRouter)
+app.use(passport.initialize())
+app.use('/', routesApi)
+
+//FOR DEBUGGING! TURN OFF LATER!
+//app.use('/reg', regRouter);
 
 //RegData.deleteMany(function(err){if(err) console.log(err) })
 
