@@ -7,6 +7,19 @@ var sendJSONresponse = function(res, status, content) {
   res.json(content);
 };
 
+module.exports.getreg = function(req, res) {
+    User.find(function(err, items){
+        if(err) {
+            res.status(500).send({message: "user GET error"})
+            return console.error(err)
+        }
+            let reply = JSON.stringify(items)
+        console.log(reply)
+        res.status(200).send(JSON.stringify(reply))
+    })
+}
+
+
 //register username and password
 module.exports.register = function(req, res) {
 
