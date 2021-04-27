@@ -1,54 +1,71 @@
-var express = require('express');
-var router = express.Router();
+var mongoose = require('mongoose')
+let WorkoutData = mongoose.model('WorkoutData')
 
 //add new workout
 module.exports.fitpost = function(req, res, next) {
-    console.log(req.query)
-    let workoutdata = new WorkoutData(req.query);
+    if (!req.payload._id) {
+        res.status(401).json({
+          "message" : "UnauthorizedError: private profile"
+    })}
+    else {
+        console.log(req.payload._id)
+        let workoutdata = new WorkoutData(req.query);
 
-    //defaults
-    workoutdata.completed = false
+        //defaults
+        workoutdata.completed = false
+        workoutdata.userid = req.payload._id
 
-    workoutdata.save(function (err){ 
-        if (err){
-            console.log(err) 
-            res.status(500).send({message: "workout, DB add error"})
-            return
-        }})
+        workoutdata.save(function (err){ 
+            if (err){
+                console.log(err) 
+                res.status(500).send({message: "workout, DB add error"})
+                return
+            }})
 
-    res.status(200).send({message: "Workout added to DB"})
+        res.status(200).send({message: "Workout added to DB"})
+    }
 }
 
 //get all workout data
 //TODO just get data for one user
 module.exports.fitget = function(req, res, next) {
-    WorkoutData.find(function(err, items){
+    if (!req.payload._id) {
+        res.status(401).json({"message" : "UnauthorizedError: private profile"})
+        return
+    }
+
+    console.log(req.payload._id)
+
+    WorkoutData.find({userid: req.payload._id}).exec(function(err, items){
+    // WorkoutData.find(function(err, items){ //finds all
         if(err) {
             console.log(err)
             res.status(500).send({message: "get error, workout"})
-            return
         }
-        let reply = JSON.stringify(items)
-        console.log(reply)
-        res.send(reply)
+        else{
+            // console.log(items)
+            res.status(200).json(items)
+        }
     })
 }
 
 //delete workout by id
 //TODO confirm user owns that workout
 module.exports.fitdelete = function(req, res, next) {
-    let deldata = WorkoutData.deleteMany({"_id": req.query.id}, function (err, result) {
+    console.log(req.payload._id)
+    if(!req.payload._id){
+        res.status(401).json({"message" : "UnauthorizedError: private profile"})
+        return
+    }
+    
+    let deldata = WorkoutData.deleteMany({userid: req.payload._id}, function (err) {
       if(err){ 
           console.log(err)
           res.status(500).send({message: "delete error, workout"})
           return
       }
-      else if(result.deletedCount < 1){
-        res.status(500).send({message: "Couldn't find ID, workout delete"})
-        return
-      }
       else{
-        res.status(200).send({message: "Workout removed from DB"})
+        res.status(200).send({message: "Workout(s) removed from DB"})
       }
     })
 }
