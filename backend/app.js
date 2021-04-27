@@ -4,8 +4,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var passport = require('passport');
 
-var regRouter = require('./routes/reg');
-
 var app = express();
 
 require('./api/models/db');
@@ -34,9 +32,6 @@ app.all('*', function(req, res, next) {
 
 app.use(passport.initialize())
 app.use('/', routesApi)
-
-//FOR DEBUGGING! TURN OFF LATER!
-//app.use('/reg', regRouter);
 
 //RegData.deleteMany(function(err){if(err) console.log(err) })
 
