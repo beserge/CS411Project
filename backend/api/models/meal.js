@@ -13,6 +13,7 @@ const MealSchema = new mongoose.Schema({
     cholesterol_mg: Number,
     protein_g: Number,
     carbohydrates_total_g: Number,
+    userid: String,
 });
 
 let MealData = mongoose.model('MealData', MealSchema)

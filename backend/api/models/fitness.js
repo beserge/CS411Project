@@ -12,6 +12,7 @@ const WorkoutSchema = new mongoose.Schema({
     calories: Number,
     duration: Number, //minutes
     completed: Boolean,
+    userid: String,
 });
 
 let WorkoutData = mongoose.model('WorkoutData', WorkoutSchema)
