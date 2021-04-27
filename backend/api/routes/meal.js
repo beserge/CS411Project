@@ -1,8 +1,24 @@
-var express = require('express');
-var router = express.Router();
-
 var mongoose = require('mongoose')
-var RegData = mongoose.model('MealData')
+var MealData = mongoose.model('MealData')
+
+module.exports.mealget = function(req, res, next) {
+    if (!req.payload._id) {
+        res.status(401).json({"message" : "UnauthorizedError: private profile"})
+        return
+    }
+
+    MealData.find({userid: req.payload._id}).exec(function(err, items){
+    // MealData.find(function(err, items){ // finds all
+            if(err) {
+                console.log(err)
+                res.status(500).send({message: "get error, meal"})
+            }
+            else{
+                // console.log(items)
+                res.status(200).json(items)
+            }
+    })
+}
 
 module.exports.mealpost = function(req, res, next) {
     if (!req.payload._id) {
@@ -10,8 +26,9 @@ module.exports.mealpost = function(req, res, next) {
           "message" : "UnauthorizedError: private profile"
     })}
     else {
-        console.log(req.query)
         let mealdata = new MealData(req.query);
+        mealdata.userid = req.payload._id
+ 
         mealdata.save(function (err){ 
             if (err){
                 console.log(err) 

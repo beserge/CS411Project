@@ -34,8 +34,6 @@ module.exports.fitget = function(req, res, next) {
         return
     }
 
-    console.log(req.payload._id)
-
     WorkoutData.find({userid: req.payload._id}).exec(function(err, items){
     // WorkoutData.find(function(err, items){ //finds all
         if(err) {

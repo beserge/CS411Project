@@ -29,7 +29,8 @@ router.post('/healthreg', regRouter.healthregpost)
 router.get('/healthreg', auth, regRouter.healthregget)
 
 //meal
-router.post('/meal', auth, mealRouter.mealpost);
+router.post('/meal', auth, mealRouter.mealpost)
+router.get('/meal', auth, mealRouter.mealget)
 
 //calorie ninja api
 router.get('/cntext', cn.text)
