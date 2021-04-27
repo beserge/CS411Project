@@ -13,6 +13,7 @@ var mealRouter = require('../routes/meal')
 var cn = require('./cntext')
 var regRouter = require('./healthReg')
 var fitRouter = require('./fitness')
+var stravaRouter = require('./strava')
 
 // profile
 router.get('/profile', auth, ctrlProfile.profileRead);
@@ -36,5 +37,8 @@ router.get('/cntext', cn.text)
 router.post('/fitness', auth, fitRouter.fitpost)
 router.get('/fitness', auth, fitRouter.fitget)
 router.delete('/fitness', auth, fitRouter.fitdelete)
+
+//strava api
+router.get('/stravaOAuth', stravaRouter.stravaOAuth)
 
 module.exports = router;

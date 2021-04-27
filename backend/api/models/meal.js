@@ -16,4 +16,4 @@ const MealSchema = new mongoose.Schema({
     userid: String,
 });
 
-let MealData = mongoose.model('MealData', MealSchema)
+mongoose.model('MealData', MealSchema)
