@@ -21,9 +21,6 @@ router.get('/profile', auth, ctrlProfile.profileRead);
 router.post('/reg', ctrlAuth.register);
 router.post('/login', ctrlAuth.login);
 
-//get all registered users (debug)
-router.get('/reg', ctrlAuth.getreg)
-
 //health registration data
 router.post('/healthreg', regRouter.healthregpost)
 router.get('/healthreg', auth, regRouter.healthregget)
