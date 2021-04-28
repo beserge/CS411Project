@@ -7,8 +7,7 @@ import { Config } from '../config/config';
 import { AuthenticationService } from '../authentication.service'
 
 @Injectable({
-  providedIn: 'root'
-})
+  providedIn: 'root',})
 export class MiddleService {
     constructor(private http: HttpClient, private auth: AuthenticationService) { }
   
