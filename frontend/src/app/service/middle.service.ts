@@ -4,11 +4,13 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Config } from '../config/config';
+import { AuthenticationService } from '../authentication.service'
+
 @Injectable({
   providedIn: 'root'
 })
 export class MiddleService {
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private auth: AuthenticationService) { }
   
     doSubmit(wholedata:any): Observable<any> {
       let datastr = new URLSearchParams(wholedata).toString()
@@ -19,6 +21,10 @@ export class MiddleService {
     Submitmeal(foodinfo:any): Observable<any>  {
       return this.http.get(Config.baseURL+Config.texturl_search+foodinfo,
         {observe:'body', responseType:'json'})
+    }
+    GetMeal(): Observable<any>  {
+      return this.http.get(Config.baseURL+Config.texturl_meal,
+        {observe:'body', responseType:'json', headers: { Authorization: `Bearer ${this.auth.getToken()}` }})
     }
     Back_meal(nuinfo:any): Observable<any>  {
       return this.http.post(Config.baseURL+Config.texturl_meal+nuinfo,
