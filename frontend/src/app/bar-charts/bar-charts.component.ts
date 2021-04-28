@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { productSales, productSalesMulti } from '../dummydata/dummy'
 
+@Input() Response;
+updateList() {
+    this.Response.push('app-bar-charts');
+}
 @Component({
   selector: 'app-bar-charts',
   templateUrl: './bar-charts.component.html',

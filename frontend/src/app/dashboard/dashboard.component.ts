@@ -15,12 +15,14 @@ export class DashboardComponent implements OnInit{
   constructor(private service: MiddleService,
     private http: HttpClient) { }
 
-  ngOnInit() {
+    public res: any
 
+  ngOnInit() {
     this.service.GetMeal().subscribe(
       (response: any)=>
       {
-        console.log(response);
+        console.log(response)
+        this.res = response
   })
 
   }

@@ -17,7 +17,6 @@ export var productSales = [
     }
 ];
 
-
 export var productSalesMulti = [
     {
         "name": "book",
