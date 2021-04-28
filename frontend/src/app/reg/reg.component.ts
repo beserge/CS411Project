@@ -1,7 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { MiddleService } from '../service/middle.service';
 import { Router } from '@angular/router';
 import { AuthenticationService, TokenPayload } from '../authentication.service';
 
@@ -32,7 +31,6 @@ export class RegComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, 
               private http: HttpClient, 
-              private service: MiddleService,
               private router: Router,
               private auth: AuthenticationService) { }
 
@@ -226,6 +224,6 @@ export class RegComponent implements OnInit {
     }
 
     console.log(model)
-    this.service.doSubmit(model).subscribe()
+    this.auth.doSubmit_regdata(model).subscribe()
   } 
 }

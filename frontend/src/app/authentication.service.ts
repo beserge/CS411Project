@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-
+import { Config } from '../app/config/config';
 export interface UserDetails {
   _id: string;
   email: string;
@@ -61,12 +61,26 @@ export class AuthenticationService {
     }
   }
 
-  private request(method: 'post'|'get', type: 'login'|'reg'|'profile', user?: TokenPayload): Observable<any> {
+  private request(method: 'post'|'get'|'delete', type: 'login'|'reg'|'fitness'|'meal', user?: TokenPayload, inputstring?: string): Observable<any> {
     let base;
 
-    if (method === 'post') {
+    if (type==="login") {
+      //post for login
+      console.log('log_in running now')
       base = this.http.post(`http://localhost:3000/${type}`, user);
-    } else {
+    } 
+    else if (type==='reg'){
+      //post for register
+      console.log('reg is running now')
+      base = this.http.post(`http://localhost:3000/${type}`, user);
+    }
+    else if (method === 'post') {
+      //post for meal and fitness
+      console.log('fitness or meal post is running now')
+      base = this.http.post(`http://localhost:3000/${type}`, {body: inputstring}, { headers: { Authorization: `Bearer ${this.getToken()}`}});
+    }
+    else {
+      console.log('getting something right now')
       base = this.http.get(`http://localhost:3000/${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
     }
 
@@ -90,13 +104,35 @@ export class AuthenticationService {
     return this.request('post', 'login', user);
   }
 
-  public profile(): Observable<any> {
-    return this.request('get', 'profile');
+  public getworkout(): Observable<any> {
+    return this.request('get','fitness');
   }
-
+  public addworkout(workoutinfo:string): Observable<any> {
+    return this.request('post','fitness',this.token,workoutinfo);
+  }
   public logout(): void {
     this.token = '';
     window.localStorage.removeItem('mean-token');
     this.router.navigateByUrl('/');
   }
+
+  public delete_workout(woid:string): Observable <any> {
+    return this.request('delete','fitness',this.token,woid)
+  }
+
+  public meal_post(mealinfo:string): Observable <any> {
+    return this.request('post','meal',this.token,mealinfo)
+  }
+
+  doSubmit_regdata(wholedata:any): Observable<any> {
+    let datastr = new URLSearchParams(wholedata).toString()
+    console.log(Config.baseURL+Config.texturl_reg+datastr)
+    return this.http.post(Config.baseURL+Config.texturl_reg+datastr,
+      {observe:'body', responseType:'json'})
+  }
+  Submitcntext(foodinfo:any): Observable<any>  {
+    return this.http.get(Config.baseURL+Config.texturl_search+foodinfo,
+      {observe:'body', responseType:'json'})
+  }
+
 }

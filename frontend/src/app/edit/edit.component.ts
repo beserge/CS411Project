@@ -3,8 +3,6 @@ import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {first} from "rxjs/operators";
 
-import { MiddleService } from '../service/middle.service';
-
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
@@ -14,7 +12,7 @@ export class EditComponent implements OnInit {
 
   user: any;
   editForm :any= FormGroup;
-  constructor(private formBuilder: FormBuilder,private router: Router, private apiService: MiddleService) { }
+  constructor(private formBuilder: FormBuilder,private router: Router) { }
 
   ngOnInit() {
     let userId = window.localStorage.getItem("editUserId");
@@ -29,14 +27,14 @@ export class EditComponent implements OnInit {
       Time: ['', Validators.required],
 
     });
-   /* this.apiService.getUserById(+userId)
+   /* this.auth.getUserById(+userId)
       .subscribe( data => {
         this.editForm.setValue(data.result);
       });*/
   }
 
   onSubmit() {
-    this.apiService.editWorkout(this.editForm.value)
+    /*this.auth.editWorkout(this.editForm.value)
       .pipe(first())
       .subscribe(
         data => {
@@ -49,7 +47,7 @@ export class EditComponent implements OnInit {
         },
         error => {
           alert(error);
-        });
+        });*/
   }
 
 }

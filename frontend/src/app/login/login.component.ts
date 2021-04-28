@@ -1,7 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { MiddleService } from '../service/middle.service';
 import { Router } from '@angular/router';
 import { AuthenticationService, TokenPayload } from '../authentication.service';
 

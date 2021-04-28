@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { MiddleService } from '../service/middle.service'
 import { HttpClient } from '@angular/common/http';
+import { AuthenticationService} from '../authentication.service';
+import { fromPromise } from 'rxjs/internal-compatibility';
 @Component({
   selector: 'app-meal',
+  providers: [AuthenticationService],
   templateUrl: './meal.component.html',
   styleUrls: ['./meal.component.css']
 })
@@ -24,10 +26,10 @@ export class MealComponent  {
   public protein_sum = 0
   public carbon_sum = 0
 
-  constructor(private service: MiddleService,
-              private http: HttpClient ){}
+  constructor(private http: HttpClient,
+              private auth: AuthenticationService ){}
   doSubmit():void {
-    this.service.Submitmeal(this.foodinfo.foodname).subscribe(
+    this.auth.Submitcntext(this.foodinfo.foodname).subscribe(
       (response)=>
       {
         var str = "Nutrition Facts:"+'\n';
@@ -57,7 +59,7 @@ export class MealComponent  {
       +this.safat+'&fat_total_g='+this.fat_sum+'&calories='+this.cal_sum+'&cholesterol_mg='+this.chol
       +'&protein_g='+this.carbon_sum+'&carbohydrates_total_g='+this.protein_sum
     console.log(backendstr)
-    this.service.Back_meal(backendstr).subscribe((response)=>{alert(JSON.stringify(response))})
+    this.auth.meal_post(backendstr).subscribe((response)=>{alert(JSON.stringify(response))})
   }
 
   
