@@ -1,45 +1,41 @@
+import { importExpr } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
+import {AuthenticationService} from '../authentication.service'
+import  {Router } from '@angular/router';
 
-import { MiddleService } from '../service/middle.service';
-import { Router } from '@angular/router';
-import { FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-fitness',
+  providers: [AuthenticationService],
   templateUrl: './fitness.component.html',
   styleUrls: ['./fitness.component.css']
 })
+export class FitnessComponent implements OnInit {
+  public workouts=[]
+  constructor(private router: Router, private auth: AuthenticationService) { }
 
-export class FitnessComponent{
-  constructor(private router: Router, private apiService: MiddleService) { }
-
-  workouts:any= [];
-  ngOnInit() {
-   /* if(!window.localStorage.getItem('token')) {
+  ngOnInit(): void {
+    /*
+    if(!window.localStorage.getItem('token')){
       this.router.navigate(['login']);
       return;
     }*/
-    alert("running")
-    this.apiService.getWorkout()
+    this.auth.getworkout()
       .subscribe( data => {
-        this.workouts = data;
+        console.log(data);
       });
   }
-  deleteWorkout(workout: any): void {
-    this.apiService.deleteWorkout(workout.id)
-      .subscribe( data => {
-        this.workouts = this.workouts.filter((u: any) => u !== workout);
-      })
-  };
-
-  editWorkout(workout: any): void {
-    window.localStorage.removeItem("editUserId");
-    window.localStorage.setItem("editUserId", workout.id.toString());
-    this.router.navigate(['edit']);
-  };
-
-  addWorkout(): void {
+  addWorkout(){
     this.router.navigate(['add']);
-  };
-  
+  }
+  editWorkout(w:any){
+    this.router.navigate(['edit'])
+  }
+  deleteWorkout(w:any){
+    this.auth.delete_workout(w);
+    this.auth.getworkout()
+      .subscribe( data => {
+        console.log(data);
+      });
+  }
 }

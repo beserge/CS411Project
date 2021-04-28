@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
-import {Router} from "@angular/router";
+import {Router, RouterLinkWithHref} from "@angular/router";
 import { FitnessComponent } from '../fitness/fitness.component';
-import { MiddleService } from '../service/middle.service';
 
+import {AuthenticationService} from '../authentication.service'
 @Component({
   selector: 'app-add',
+  providers: [AuthenticationService],
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.css']
 })
 export class AddComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder,private router: Router, private apiService: MiddleService,) { }
+  constructor(private formBuilder: FormBuilder,private router: Router,
+              private auth: AuthenticationService) { }
 
   addForm: FormGroup | any;
   public workouttypes = ['isOutdoor','isIndoor','isCycling','isRunning']
@@ -41,7 +43,7 @@ export class AddComponent implements OnInit {
     +Year+'&'+this.addForm.value.Type+'=true'+
     '&'+this.workouttypes[0]+'=false'+'&'+this.workouttypes[1]+'=false'+'&'+this.workouttypes[2]+'=false'
     console.log(inputstring)
-    this.apiService.Add_workout(inputstring)
+    this.auth.addworkout(inputstring)
       .subscribe( data => {
         this.router.navigate(['fitness']);
       });
