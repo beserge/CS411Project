@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms'
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegComponent } from './reg/reg.component';
 import {HttpClientModule} from '@angular/common/http';
-import { MiddleService } from './service/middle.service';
+
 import { SplashScreenComponent } from './splashscreen/splashscreen.component';
 import { MealComponent } from './meal/meal.component';
 import { LoginComponent } from './login/login.component';
@@ -55,7 +55,7 @@ import { EditComponent } from './edit/edit.component';
     NgxChartsModule,
     RouterModule,
   ],
-  providers: [MiddleService],
+  providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
