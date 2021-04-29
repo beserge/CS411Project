@@ -77,7 +77,7 @@ export class AuthenticationService {
     else if (method === 'post') {
       //post for meal and fitness
       console.log('fitness or meal post is running now')
-      base = this.http.post(`http://localhost:3000/${type}`, {body: inputstring}, { headers: { Authorization: `Bearer ${this.getToken()}`}});
+      base = this.http.post(`http://localhost:3000/${type}` + '?' + inputstring, {}, { headers: { Authorization: `Bearer ${this.getToken()}`}});
     }
     else {
       console.log('getting something right now')

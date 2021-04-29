@@ -39,10 +39,21 @@ export class AddComponent implements OnInit {
     var Year = this.addForm.value.Date.substring(0,4)
     var month = this.addForm.value.Date.substring(5,7)
     var Day = this.addForm.value.Date.substring(8)
-    inputstring+='time='+this.addForm.value.Time+'&day='+Day+'&month='+month+'&year='
-    +Year+'&'+this.addForm.value.Type+'=true'+
-    '&'+this.workouttypes[0]+'=false'+'&'+this.workouttypes[1]+'=false'+'&'+this.workouttypes[2]+'=false'
-    console.log(inputstring)
+    // inputstring+='time='+this.addForm.value.Time+'&day='+Day+'&month='+month+'&year='
+    // +Year+'&'+this.addForm.value.Type+'=true'+
+    // '&'+this.workouttypes[0]+'=false'+'&'+this.workouttypes[1]+'=false'+'&'+this.workouttypes[2]+'=false' +
+    // '&'+this.workouttypes[3]+'=false
+    inputstring += 'time=11:30' +
+                    '&day=1' +
+                    '&month=1' +
+                    '&year=2021' +
+                    '&isCycling=false' +
+                    '&isRunning=true' +
+                    '&isIndoor=false' +
+                    '&isOutdoor=true' +
+                    '&duration=100'
+
+    console.log('test!!!!!', inputstring)
     this.auth.addworkout(inputstring)
       .subscribe( data => {
         this.router.navigate(['fitness']);
