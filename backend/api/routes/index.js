@@ -39,6 +39,7 @@ router.get('/fitness', auth, fitRouter.fitget)
 router.delete('/fitness', auth, fitRouter.fitdelete)
 
 //strava api
-router.get('/stravaOAuth', stravaRouter.stravaOAuth)
+router.get('/stravaOAuth', stravaRouter.stravaReroute, auth, stravaRouter.stravaOAuth)
+router.get('/strava', stravaRouter.stravaget)
 
 module.exports = router;

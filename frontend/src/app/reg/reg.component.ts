@@ -166,6 +166,7 @@ export class RegComponent implements OnInit {
   doSubmitAccount(){
     this.getchilddata()
     this.register()
+    this.submitOauth()
   }
 
   credentials: TokenPayload = {
@@ -188,7 +189,6 @@ export class RegComponent implements OnInit {
     console.log(this.credentials) 
 
     this.auth.register(this.credentials).subscribe(() => {
-        this.router.navigateByUrl('/login');
       }, 
       (err) => {
         console.error(err);
@@ -226,4 +226,15 @@ export class RegComponent implements OnInit {
     console.log(model)
     this.auth.doSubmit_regdata(model).subscribe()
   } 
+
+  submitOauth(){
+    document.location.href =
+    "http://www.strava.com/oauth/authorize?client_id="+ 
+    "64966" + // our client ID
+    "&response_type=code&redirect_uri="+
+    "http://localhost:3000/stravaoauth"+ // send data to backend
+    "?token=" + this.auth.getToken() //attach token to query string
+    "&approval_prompt=force&"+
+    "scope=activity%3Awrite%2Cactivity%3Aread" //permissions we want
+  }
 }

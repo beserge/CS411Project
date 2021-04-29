@@ -33,7 +33,7 @@ export class AuthenticationService {
     this.token = token;
   }
 
-  private getToken(): string {
+  public getToken(): string {
     if (!this.token) {
       this.token = localStorage.getItem('mean-token');
     }
@@ -134,5 +134,4 @@ export class AuthenticationService {
     return this.http.get(Config.baseURL+Config.texturl_search+foodinfo,
       {observe:'body', responseType:'json'})
   }
-
 }
