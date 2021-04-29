@@ -42,5 +42,6 @@ router.delete('/fitness', auth, fitRouter.fitdelete)
 router.get('/stravaOAuth', stravaRouter.stravaReroute, auth, stravaRouter.stravaOAuth)
 
 router.get('/stravadebug', auth, stravaRouter.stravaget)
+router.delete('/destroyall', stravaRouter.thenuclearoption)
 
 module.exports = router;

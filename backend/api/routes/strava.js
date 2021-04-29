@@ -2,6 +2,8 @@ var mongoose = require('mongoose')
 var StravaData = mongoose.model('StravaData');
 var WorkoutData = mongoose.model('WorkoutData')
 var UserData = mongoose.model('User')
+var MealData = mongoose.model('MealData')
+var RegData = mongoose.model('RegData')
 var moment = require('moment')
 var axios = require('axios');
 
@@ -18,7 +20,13 @@ module.exports.stravaWorkoutPost = function(user_id, workoutdata){
             else{
                 //call the api
                 const params = new URLSearchParams()
-                // params.append()
+                // params.append('authorization', 'Bearer ' + stravaitem.access_token,)
+            
+                var config = {
+                    headers:{
+                        Authorization: 'Bearer ' + stravaitem.authToken
+                    }
+                };
             
                 let url = 'https://www.strava.com/api/v3/activities?' + 
                 'name=' + '4PIF1T Activity' +
@@ -27,11 +35,6 @@ module.exports.stravaWorkoutPost = function(user_id, workoutdata){
                 '&elapsed_time=' + workoutdata.duration + 
                 'start_date_local' + '2018-02-20T10:02:13Z' //ISO8601
 
-                var config = {  
-                    headers: {
-                        'Authorization': 'Bearer ' + stravaitem.access_token,
-                }};
-            
                 axios.post(url, params, config)
                 .then(function (response) {
                     console.log(response.data)
@@ -50,8 +53,8 @@ module.exports.stravaWorkoutPost = function(user_id, workoutdata){
 
 //check tokens and refresh them if necessary
 let tokenCheck = function(_id){
+    console.log(_id)
     StravaData.find({userid: _id}).exec(function(err, items){
-        console.log(items)
         if (err){
             console.log(err)
             res.status(500).json({message: "find error, strava api"})
@@ -176,4 +179,13 @@ module.exports.stravaget = function(req, res, next){
         console.log('err: ', err)
         console.log('item: ', item)
     })
+}
+
+module.exports.thenuclearoption = function(req, res, next){
+    StravaData.deleteMany({}, function(){})
+    WorkoutData.deleteMany({}, function(){})
+    UserData.deleteMany({}, function(){})
+    MealData.deleteMany({}, function(){})
+    RegData.deleteMany({}, function(){})
+    res.status(200).json({message: "I am become debug, destroyer of databases"})
 }
