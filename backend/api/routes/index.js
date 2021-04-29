@@ -42,4 +42,6 @@ router.delete('/fitness', auth, fitRouter.fitdelete)
 router.get('/stravaOAuth', stravaRouter.stravaReroute, auth, stravaRouter.stravaOAuth)
 router.get('/strava', stravaRouter.stravaget)
 
+router.get('/unix', stravaRouter.unix)
+
 module.exports = router;

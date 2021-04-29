@@ -1,6 +1,10 @@
 var mongoose = require('mongoose')
 var StravaData = mongoose.model('StravaData');
 
+module.exports.unix = function(){
+    console.log(moment().unix())
+}
+
 //strava reroutes to us here
 //we need to move some data around before we jump to auth
 module.exports.stravaReroute = function(req, res, next){
