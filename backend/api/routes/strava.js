@@ -6,41 +6,52 @@ var moment = require('moment')
 var axios = require('axios');
 
 //send a new workout to strava
-//these get so dense calling mongoose like 3 times nested...
-module.exports.stravaWorkoutPost = function(req, res, next){
-    if (!req.payload._id) {
-        res.status(401).json({"message" : "UnauthorizedError: private profile"})
-        return
-    }
-
-    else if(tokenCheck(req.payload_id)){
-        StravaData.findOne({userid: req.payload._id}).exec(function(err, stravaitem){
+module.exports.stravaWorkoutPost = function(user_id, workoutdata){
+    //check strava tokens are still ok for user
+    if(tokenCheck(user_id)){
+        //get strava tokens
+        StravaData.findOne({userid: user_id}).exec(function(err, stravaitem){
             if(err){
-                console.log({message: 'strava data not found for user'})
                 console.log('error', err)
                 return
             }
             else{
-                WorkoutData.findOne({userid: req.payload._id, _id: req.query.workout_id}).exec(function(err, workoutitem){
-                    if(err){
-                        console.log({message: 'workout not found with id and user id'})
-                        return        
-                    }
-                    //call the api
+                //call the api
+                const params = new URLSearchParams()
+                // params.append()
+            
+                let url = 'https://www.strava.com/api/v3/activities?' + 
+                'name=' + '4PIF1T Activity' +
+                '&type=' + (workoutdata.isRunnning ? 'Run' : '') + 
+                (workoutdata.isCycling ? 'Cycling' : '') +
+                '&elapsed_time=' + workoutdata.duration + 
+                'start_date_local' + '2018-02-20T10:02:13Z' //ISO8601
+
+                var config = {  
+                    headers: {
+                        'Authorization': 'Bearer ' + stravaitem.access_token,
+                }};
+            
+                axios.post(url, params, config)
+                .then(function (response) {
+                    console.log(response.data)
                 })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
             }
         })
-        res.status(200).json({message: 'good strava post, workout added!'})
     }
-    
     else{
-        res.status(500).json({"message" : "strava token error"})
+        console.log('token error')
     }
 }
 
 //check tokens and refresh them if necessary
 let tokenCheck = function(_id){
     StravaData.find({userid: _id}).exec(function(err, items){
+        console.log(items)
         if (err){
             console.log(err)
             res.status(500).json({message: "find error, strava api"})
@@ -153,10 +164,16 @@ module.exports.stravaOAuth = function(req, res, next){
 
 //DEBUG ONLY REMOVE!!!!!!
 module.exports.stravaget = function(req, res, next){
-    StravaData.find({userid: req.payload._id}).exec(function(err, items){
+    //StravaData.find({userid: req.payload._id}).exec(function(err, items){
+    StravaData.find().exec(function(err, items){
         if(err){
             console.err(err)
         }
         res.status(200).json(items)
+    })
+
+    UserData.find({_id: req.payload.id}).exec(function(err, item){
+        console.log('err: ', err)
+        console.log('item: ', item)
     })
 }

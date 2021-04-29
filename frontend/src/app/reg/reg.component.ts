@@ -233,7 +233,7 @@ export class RegComponent implements OnInit {
     "64966" + // our client ID
     "&response_type=code&redirect_uri="+
     "http://localhost:3000/stravaoauth"+ // send data to backend
-    "?token=" + this.auth.getToken() //attach token to query string
+    "?token=" + this.auth.getToken() + //attach token to query string
     "&approval_prompt=force&"+
     "scope=activity%3Awrite%2Cactivity%3Aread" //permissions we want
   }
