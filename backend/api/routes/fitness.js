@@ -9,7 +9,6 @@ module.exports.fitpost = function(req, res, next) {
           "message" : "UnauthorizedError: private profile"
     })}
     else {
-        console.log(req.payload._id)
         let workoutdata = new WorkoutData(req.query);
 
         //defaults

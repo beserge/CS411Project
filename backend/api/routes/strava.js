@@ -18,29 +18,28 @@ module.exports.stravaWorkoutPost = function(user_id, workoutdata){
                 return
             }
             else{
-                //call the api
-                const params = new URLSearchParams()
-                // params.append('authorization', 'Bearer ' + stravaitem.access_token,)
-            
+                //call the api            
                 var config = {
+                    method: 'post',
+                    
+                    url:'https://www.strava.com/api/v3/activities?' + 
+                    'name=' + '4PIF1T' +
+                    '&type=' + (workoutdata.isRunnning ? 'Run' : '') + 
+                    (workoutdata.isCycling ? 'Cycling' : '') + 'Run' +
+                    '&elapsed_time=' + workoutdata.duration + 
+                    '&start_date_local=' + '2018-02-20T10:02:13Z', //ISO8601
+    
                     headers:{
-                        Authorization: 'Bearer ' + stravaitem.authToken
+                        'Authorization': 'Bearer ' + stravaitem.access_token
                     }
-                };
-            
-                let url = 'https://www.strava.com/api/v3/activities?' + 
-                'name=' + '4PIF1T Activity' +
-                '&type=' + (workoutdata.isRunnning ? 'Run' : '') + 
-                (workoutdata.isCycling ? 'Cycling' : '') +
-                '&elapsed_time=' + workoutdata.duration + 
-                'start_date_local' + '2018-02-20T10:02:13Z' //ISO8601
+                }
 
-                axios.post(url, params, config)
+                axios(config)
                 .then(function (response) {
                     console.log(response.data)
                 })
                 .catch(function (error) {
-                    console.log(error);
+                    console.error(error);
                 });
 
             }
