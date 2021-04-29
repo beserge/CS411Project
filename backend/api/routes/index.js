@@ -40,7 +40,7 @@ router.delete('/fitness', auth, fitRouter.fitdelete)
 
 //strava api
 router.get('/stravaOAuth', stravaRouter.stravaReroute, auth, stravaRouter.stravaOAuth)
-router.get('/strava', auth, stravaRouter.stravaApi)
+router.post('/stravaWorkout', auth, stravaRouter.stravaWorkoutPost)
 
 router.get('/stravadebug', auth, stravaRouter.stravaget)
 

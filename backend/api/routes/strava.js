@@ -1,29 +1,56 @@
 var mongoose = require('mongoose')
 var StravaData = mongoose.model('StravaData');
+var WorkoutData = mongoose.model('WorkoutData')
+var UserData = mongoose.model('User')
 var moment = require('moment')
 var axios = require('axios');
 
-module.exports.stravaApi = function(req, res, next){
-    //get user's local strava data
+//send a new workout to strava
+//these get so dense calling mongoose like 3 times nested...
+module.exports.stravaWorkoutPost = function(req, res, next){
     if (!req.payload._id) {
         res.status(401).json({"message" : "UnauthorizedError: private profile"})
         return
     }
 
-    StravaData.find({userid: req.payload._id}).exec(function(err, items){
+    else if(tokenCheck(req.payload_id)){
+        StravaData.findOne({userid: req.payload._id}).exec(function(err, stravaitem){
+            if(err){
+                console.log({message: 'strava data not found for user'})
+                console.log('error', err)
+                return
+            }
+            else{
+                WorkoutData.findOne({userid: req.payload._id, _id: req.query.workout_id}).exec(function(err, workoutitem){
+                    if(err){
+                        console.log({message: 'workout not found with id and user id'})
+                        return        
+                    }
+                    //call the api
+                })
+            }
+        })
+        res.status(200).json({message: 'good strava post, workout added!'})
+    }
+    
+    else{
+        res.status(500).json({"message" : "strava token error"})
+    }
+}
+
+//check tokens and refresh them if necessary
+let tokenCheck = function(_id){
+    StravaData.find({userid: _id}).exec(function(err, items){
         if (err){
             console.log(err)
             res.status(500).json({message: "find error, strava api"})
-            return
+            return false
         }
         else if(moment().unix() >= items[0].expires_at){
-            refreshTokens(req.payload._id)            
+            return refreshTokens(_id)            
         }
-        else{
-            console.log('expires in: ', items[0].expires_at - moment().unix())
-        }
-        //make the API call
     })
+    return true
 }
 
 //refresh strava tokens when they expire
@@ -36,7 +63,7 @@ let refreshTokens = function(_id){
     StravaData.find({userid: _id}).exec(function(err, items){
         if (err){
             console.log(err)
-            return
+            return false
         }
         
         //found expired data, call strava to get new tokens
@@ -61,14 +88,16 @@ let refreshTokens = function(_id){
                 StravaData.updateOne({userid: _id}, newdata).exec(function (err){ 
                     if (err){
                         console.log(err) 
-                        return
+                        return false
                     }
                 })        
             })
             .catch(function (error) {
                 console.log(error);
+                return false
             });
     })
+    return true
 }
 
 
