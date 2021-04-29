@@ -113,7 +113,7 @@ export class AuthenticationService {
   public logout(): void {
     this.token = '';
     window.localStorage.removeItem('mean-token');
-    this.router.navigateByUrl('/');
+    setTimeout(() => { this.router.navigateByUrl('/') }, 2 * 1000)
   }
 
   public delete_workout(woid:string): Observable <any> {

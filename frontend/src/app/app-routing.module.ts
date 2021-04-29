@@ -8,6 +8,7 @@ import { LoginComponent} from './login/login.component'
 import { FitnessComponent} from './fitness/fitness.component'
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddComponent } from './add/add.component';
+import { LogoutComponent } from './logout/logout.component';
 
 const routes: Routes = [
   {path:'splash', component: SplashScreenComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path:'login', component: LoginComponent},
   {path:'fitness', component: FitnessComponent},
   {path:'add', component: AddComponent},
+  {path:'logout', component: LogoutComponent},
   {path: '**', redirectTo: 'splash'}
 ];
 
