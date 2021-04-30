@@ -25,9 +25,9 @@ module.exports.stravaWorkoutPost = function(user_id, workoutdata){
                     url:'https://www.strava.com/api/v3/activities?' + 
                     'name=' + '4PIF1T' +
                     '&type=' + (workoutdata.isRunning ? 'Run' : '') + 
-                    (workoutdata.isCycling ? 'Cycling' : '') +
+                    (workoutdata.isCycling ? 'Ride' : '') +
                     '&elapsed_time=' + workoutdata.duration + 
-                    '&start_date_local=' + '2018-02-20T10:02:13Z', //ISO8601
+                    '&start_date_local=' + '2019-02-20T10:02:13Z', //ISO8601
     
                     headers:{
                         'Authorization': 'Bearer ' + stravaitem.access_token
