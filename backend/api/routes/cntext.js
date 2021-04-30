@@ -1,5 +1,3 @@
-var express = require('express');
-
 module.exports.text = function(req, res, next) {
     var axios = require('axios');
 

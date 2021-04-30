@@ -26,6 +26,7 @@ import { AreaLineChartsComponent } from './area-line-charts/area-line-charts.com
 import { NumberCardChartComponent } from './number-card-chart/number-card-chart.component';
 import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { EditComponent } from './edit/edit.component';
     NumberCardChartComponent,
     AddComponent,
     EditComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,

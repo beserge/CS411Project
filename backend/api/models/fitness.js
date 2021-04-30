@@ -15,4 +15,4 @@ const WorkoutSchema = new mongoose.Schema({
     userid: String,
 });
 
-let WorkoutData = mongoose.model('WorkoutData', WorkoutSchema)
+mongoose.model('WorkoutData', WorkoutSchema)

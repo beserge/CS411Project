@@ -1,5 +1,6 @@
 var mongoose = require('mongoose')
 let WorkoutData = mongoose.model('WorkoutData')
+let strava = require('./strava.js')
 
 //add new workout
 module.exports.fitpost = function(req, res, next) {
@@ -8,7 +9,6 @@ module.exports.fitpost = function(req, res, next) {
           "message" : "UnauthorizedError: private profile"
     })}
     else {
-        console.log(req.payload._id)
         let workoutdata = new WorkoutData(req.query);
 
         //defaults
@@ -22,6 +22,7 @@ module.exports.fitpost = function(req, res, next) {
                 return
             }})
 
+        strava.stravaWorkoutPost(req.payload._id, workoutdata)
         res.status(200).send({message: "Workout added to DB"})
     }
 }

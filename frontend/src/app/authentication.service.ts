@@ -33,7 +33,7 @@ export class AuthenticationService {
     this.token = token;
   }
 
-  private getToken(): string {
+  public getToken(): string {
     if (!this.token) {
       this.token = localStorage.getItem('mean-token');
     }
@@ -77,7 +77,7 @@ export class AuthenticationService {
     else if (method === 'post') {
       //post for meal and fitness
       console.log('fitness or meal post is running now')
-      base = this.http.post(`http://localhost:3000/${type}`, {body: inputstring}, { headers: { Authorization: `Bearer ${this.getToken()}`}});
+      base = this.http.post(`http://localhost:3000/${type}` + '?' + inputstring, {}, { headers: { Authorization: `Bearer ${this.getToken()}`}});
     }
     else {
       console.log('getting something right now')
@@ -113,7 +113,7 @@ export class AuthenticationService {
   public logout(): void {
     this.token = '';
     window.localStorage.removeItem('mean-token');
-    this.router.navigateByUrl('/');
+    setTimeout(() => { this.router.navigateByUrl('/') }, 2 * 1000)
   }
 
   public delete_workout(woid:string): Observable <any> {
@@ -134,5 +134,4 @@ export class AuthenticationService {
     return this.http.get(Config.baseURL+Config.texturl_search+foodinfo,
       {observe:'body', responseType:'json'})
   }
-
 }

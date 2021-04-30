@@ -50,3 +50,4 @@ require('./users');
 require('./reg')
 require('./meal')
 require('./fitness')
+require('./strava')
