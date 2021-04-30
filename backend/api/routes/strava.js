@@ -26,9 +26,13 @@ module.exports.stravaWorkoutPost = function(user_id, workoutdata){
                     'name=' + '4PIF1T' +
                     '&type=' + (workoutdata.isRunning ? 'Run' : '') + 
                     (workoutdata.isCycling ? 'Ride' : '') +
-                    '&elapsed_time=' + workoutdata.duration + 
-                    '&start_date_local=' + '2019-02-20T10:02:13Z', //ISO8601
-    
+                    '&elapsed_time=' + (workoutdata.duration * 60) + //min->sec
+                    '&start_date_local=' + //ISO8601 time
+                    workoutdata.year + '-' + 
+                    workoutdata.month + '-' +
+                    workoutdata.day + '-' +
+                    'T' + workoutdata.time + ':00Z',
+
                     headers:{
                         'Authorization': 'Bearer ' + stravaitem.access_token
                     }
