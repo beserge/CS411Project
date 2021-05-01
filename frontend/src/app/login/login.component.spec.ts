@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegComponent } from './reg.component';
+import { RegComponent } from '../reg/reg.component';
 
 describe('RegComponent', () => {
   let component: RegComponent;

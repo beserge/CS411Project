@@ -1,0 +1,36 @@
+.container{
+    text-align: center;
+    font-size:25px;
+}
+
+.error{
+    color:red;
+    font-size: 18px;
+}
+.button {
+    display: inline-block;
+    padding: 4px 15px;
+    font-size: 15px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #86bfe0;
+    border: none;
+    border-radius: 15px;
+  }
+  
+.button:hover {background-color: #78b1e6}
+  
+.button:active {
+    background-color: #94afc8;
+    box-shadow: none;
+    transform: translateY(4px);
+  }
+  button:disabled,
+  button[disabled]{
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+  }

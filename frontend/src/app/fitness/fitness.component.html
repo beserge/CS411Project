@@ -1,19 +1,23 @@
+<html>
+<div class="container1">
+  <h2 style="margin: auto"> Your Workouts</h2>
+  <br>
 
-<div class="container">
-  <h2 style="margin: auto"> User Details</h2>
-  <button class="btn btn-danger" style="width:100px" (click)="addWorkout()"> Add Workout</button>
-  <table class="table table-striped">
-    <tbody>
-    <tr *ngFor="let workout of workouts">
-      <td class="hidden"></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><button class="btn btn-success" (click)="deleteWorkout(workout)"> Delete</button>
-        <button class="btn btn-success" (click)="editWorkout(workout)" style="margin-left: 20px;"> Edit</button></td>
-    </tr>
-    </tbody>
-  </table>
+    <div class='hidden' *ngFor="let workout of workouts">
+      <div class = 'cardholder'>
+        <div class="card">
+          <div class="container2">
+            <h4><b>Workout info</b></h4>
+            <p>Start time: {{workout.starttime}}</p>
+            <p>Duration: {{workout.duration}} min</p>
+            <p>Date: {{workout.date}}</p>
+            <p>Type: {{workout.type1}} {{workout.type2}}</p>
+            <button class="button" (click)="deleteWorkout(workout.id)"> Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  <br>
+  <button class="button" style="width:100px" (click)="addWorkout()"> Add Workout</button>
 </div>
+</html>

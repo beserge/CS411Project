@@ -25,7 +25,7 @@ import { LinearGuageChartComponent } from './linear-guage-chart/linear-guage-cha
 import { AreaLineChartsComponent } from './area-line-charts/area-line-charts.component';
 import { NumberCardChartComponent } from './number-card-chart/number-card-chart.component';
 import { AddComponent } from './add/add.component';
-import { EditComponent } from './edit/edit.component';
+
 import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
@@ -44,7 +44,6 @@ import { LogoutComponent } from './logout/logout.component';
     AreaLineChartsComponent,
     NumberCardChartComponent,
     AddComponent,
-    EditComponent,
     LogoutComponent,
   ],
   imports: [

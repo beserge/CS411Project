@@ -12,7 +12,7 @@ export class DashboardComponent implements OnInit {
   constructor(private auth: AuthenticationService) { }
 
   ngOnInit(): void {
-    alert(this.auth.getToken())
+
   }
 
 }

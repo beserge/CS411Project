@@ -42,4 +42,26 @@
         width: 120px;
         height: 100px;
     }
+    .button {
+      display: inline-block;
+      padding: 4px 15px;
+      font-size: 15px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      outline: none;
+      color: black;
+      background-color: #ececec;
+      border: none;
+      border-radius: 15px;
+    }
+    
+  .button:hover {background-color: #bd76cf}
+    
+  .button:active {
+      background-color: #ce08ff;
+      box-shadow: none;
+      transform: translateY(4px);
+    }
+
     

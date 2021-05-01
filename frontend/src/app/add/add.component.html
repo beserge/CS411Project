@@ -1,11 +1,12 @@
-<div class="col-md-6 user-container">
-  <h2 class="text-center">Add Exerices</h2>
+<div class="user-container">
+  <h2 class="text-center">Add Workout</h2>
   <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
 
 
     <div class="form-group">
       <label for="Date">Date:</label>
-      <input type="Date" formControlName="Date" placeholder="Date"  class="form-control" id="Date">
+      <input type="Date" formControlName="Date" placeholder="Date"  class="form-control" id="Date"
+      min="2021-05-01" required>
     </div>
     <div class="form-group">
       <label for="Time">Start Time:</label>
@@ -29,6 +30,6 @@
             
     </div>
 
-    <button class="submit">Add</button>
+    <button [disabled]="addForm.invalid" class="submit">Add</button>
   </form>
 </div>

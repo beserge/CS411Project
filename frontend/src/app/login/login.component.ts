@@ -39,18 +39,10 @@ export class LoginComponent  implements OnInit{
     this.credentials.password = pass.value
 
     this.auth.login(this.credentials).subscribe(() => {
-      //this.router.navigateByUrl('/dashboard'); //this way breaks to sidebar
       window.location.href = "http://localhost:4200/dashboard";
     }, (err: any) => {
       console.error(err);
     }); 
 
-    // let mail:any = document.getElementById("email")
-    // let email = mail.value
-    // console.log(email)
-
-    // let pass:any = document.getElementById("pass")
-    // let password = pass.value
-    // console.log(password)
   }
 }
