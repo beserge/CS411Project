@@ -52,7 +52,9 @@ export class FitnessComponent implements OnInit {
   }
 
   deleteWorkout(workoutid:string){
-    this.auth.delete_workout(workoutid);
-    window.location.reload();
+    this.auth.delete_workout("workout_id="+workoutid).subscribe((response)=>{
+      this.workouts=this.workouts.filter(u=>u.id!=workoutid)
+    })
+    
   }
 }
