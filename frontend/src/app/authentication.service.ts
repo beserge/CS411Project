@@ -79,6 +79,9 @@ export class AuthenticationService {
       console.log('fitness or meal post is running now')
       base = this.http.post(`http://localhost:3000/${type}` + '?' + inputstring, {}, { headers: { Authorization: `Bearer ${this.getToken()}`}});
     }
+    else if (method ==='delete'){
+      base = this.http.delete(`http://localhost:3000/${type}` + '?' + inputstring, { headers: { Authorization: `Bearer ${this.getToken()}`}});
+    }
     else {
       console.log('getting something right now')
       base = this.http.get(`http://localhost:3000/${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
