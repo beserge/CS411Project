@@ -19,17 +19,16 @@ export class AddComponent implements OnInit {
   ngOnInit() {
     this.addForm = this.formBuilder.group({
       id: [],
-      Date: ['',Validators.required],
-      Time: ['', Validators.required],
-      Duration: ['', Validators.required],
-      io: ['', Validators.required],
-      cr: ['', Validators.required],
+      Date: ['',[Validators.required]],
+      Time: ['', [Validators.required]],
+      Duration: ['', [Validators.required, Validators.min(0)]],
+      io: ['', [Validators.required]],
+      cr: ['', [Validators.required]],
     });
 
   }
 
   onSubmit() {
-    console.log(this.addForm.value)
     var inputstring = ''
     
     var Year = this.addForm.value.Date.substring(0,4)
@@ -37,7 +36,6 @@ export class AddComponent implements OnInit {
     var Day = this.addForm.value.Date.substring(8)
     var time = this.addForm.value.Time
     var duration = this.addForm.value.Duration
-    console.log(this.addForm.value)
 
     inputstring+='time=' + time +
     '&day=' + Day +
@@ -59,7 +57,6 @@ export class AddComponent implements OnInit {
     //                 '&isOutdoor=true' +
     //                 '&duration=100'
 
-    console.log('test!!!!!', inputstring)
     this.auth.addworkout(inputstring)
       .subscribe( data => {
         this.router.navigate(['fitness']);

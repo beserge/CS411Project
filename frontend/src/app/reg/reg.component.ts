@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, FormsModule} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthenticationService, TokenPayload } from '../authentication.service';
@@ -11,7 +11,21 @@ import { AuthenticationService, TokenPayload } from '../authentication.service';
   providers: [AuthenticationService]
 })
 export class RegComponent implements OnInit {
+  registerForm: FormGroup;
+  BMIForm: FormGroup
+  submitted = false;
   ngOnInit(){
+    this.registerForm = this.formBuilder.group({
+      lastName: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+      });
+    this.BMIForm = this.formBuilder.group({
+        height: ['', [Validators.required]],
+        weight: ['', [Validators.required]],
+        weightchange: ['', [Validators.required]],
+        timedays: ['', [Validators.required]],
+        });
     //hide the sidebar
     let sb_opened_dom = document.getElementById("sb_opened")
     let sb_button_dom = document.getElementById("sb_button")
@@ -22,13 +36,13 @@ export class RegComponent implements OnInit {
     if(sb_button_dom){
       sb_button_dom.hidden = true
     }
-  }
 
+  }
+  get f() { return this.registerForm.controls; }
   public height:any
   public weight:any
   public weightlose:any
   public timedays:any
-
   constructor(private formBuilder: FormBuilder, 
               private http: HttpClient, 
               private router: Router,
@@ -116,6 +130,7 @@ export class RegComponent implements OnInit {
   }
 
   doSubmitWorkout(){
+
     let time:any = document.getElementById("timeframe")
     this.workoutTimes = time.value
 
@@ -162,6 +177,14 @@ export class RegComponent implements OnInit {
   }
 
   doSubmitAccount(){
+    this.submitted = true;
+
+        // stop here if form is invalid
+    if (this.registerForm.invalid) {
+        return;
+    }
+
+    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
     this.register()
   }
 
@@ -182,7 +205,6 @@ export class RegComponent implements OnInit {
     let pass:any = document.getElementById("pass")
     this.credentials.password = pass.value
    
-    console.log(this.credentials) 
 
     let token = this.auth.register(this.credentials).subscribe((token) => {
       this.getchilddata(token.token)
@@ -220,15 +242,12 @@ export class RegComponent implements OnInit {
       running: Boolean(this.running),
     }
 
-    console.log(model)
     this.auth.doSubmit_regdata(model).subscribe()
 
     this.submitOauth(token)
   } 
 
   submitOauth(token: any){
-    console.log(token)
-    alert(1)
     document.location.href =
     "http://www.strava.com/oauth/authorize?client_id="+ 
     "64966" + // our client ID

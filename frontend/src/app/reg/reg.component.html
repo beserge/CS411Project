@@ -1,136 +1,148 @@
-<div id="bmi_div">
-  <h2>BMI</h2>
-  <form>
+<div id="bmi_div" class='container'>
+  <h2>Enter Your Basic Information</h2>
 
     <div class="bmi">
       <label for="height">
         Height
       </label>
-      <input id="height" type="number">
+      <input id="height" placeholder = 'cm' type="number" min="0" max="250" [(ngModel)]="height">
     </div>
 
     <div>
       <label for="weight">
         Weight
       </label>
-      <input id="weight" type="number" >
+      <input id="weight" placeholder = 'kg' type="number" min="0" max="500" [(ngModel)]="weight">
     </div>
     <div>
       <label for="weightchange">
-        Total weight Lose/Gain
+        Your Goal Total weight Lose/Gain:
       </label>
-      <input id="weightloss" type="number" >
+      <input id="weightloss" placeholder ="kg" type="number" min="-500" max="500" [(ngModel)]="weightlose">
     </div>
 
     <div>
       <label for="timedays">
-        Time days
+        Total Days
       </label>
-      <input id="timedays" type="number" >
+      <input id="timedays" type="number" min="0" max="2000" [(ngModel)]="timedays">
     </div>
 
-    <button class="button" type="submit" (click)="doSubmitBmi()">Next</button>
+    <button class="button" [disabled]="!height||!weight||!weightlose||!timedays" type="submit" (click)="doSubmitBmi()">Next</button>
 
-  </form>
 </div>
 
-<div hidden id="diet_div">
+<div hidden id="diet_div" class='container'>
   <h2>DIET</h2>
-  <form>
       <div class="diet">
           <div>
               <label>
-                carb
+                Carb
               </label>
-              <input id="carb" type="number" >
+              <input id="carb" type="number" [(ngModel)]="carbs" >
             </div>
             <div>
               <label>
-                fat
+                Fat
               </label>
-              <input id="fat" type="number" >
+              <input id="fat" type="number" [(ngModel)]="fats" >
             </div>
             <div>
               <label>
-                protein
+                Protein
               </label>
-              <input id="protein" type="number">
+              <input id="protein" type="number" [(ngModel)]="protein">
             </div>
           <div>
           <label>
-              diet type
+              Diet type
             </label>
-            <input type="checkbox" id="Kosher" name="Kosher">Kosher
+            <input type="checkbox" id="Kosher" name="Kosher" >Kosher
             <input type="checkbox" id="Halal" name="Halal">Halal
             <input type="checkbox" id="Vege" name="Vege">Vegetarian
             <input type="checkbox" id="Vegan" name="Vegan">Vegan
           </div>
           <button class="button" type="submit" (click)="backDiet()">Back</button>
-          <button class="button" type="submit" (click)="doSubmitDiet()">Next</button>
+          <button class="button" [disabled]="!carbs||!fats||!protein" type="submit" (click)="doSubmitDiet()">Next</button>
       </div>
-  </form>
 </div>
 
-<div hidden id="workout_div">
+<div hidden id="workout_div" class='container'>
   <h2>Workout</h2>
-
-  <form>
 
     <div>
       <label for="days">
-        days
+        Days:
       </label>
-            <input type="checkbox" id="mon" name="Mon">Mon
-            <input type="checkbox" id="tue" name="Tue">Tue
-            <input type="checkbox" id="wed" name="Wed">Wed
-            <input type="checkbox" id="thur" name="Thur">Thur
-            <input type="checkbox" id="fri" name="Fri">Fri
-            <input type="checkbox" id="sat" name="Sat">Sat
-            <input type="checkbox" id="sun" name="Sun">Sun
+            <input type="checkbox" id="mon" name="Mon" [(ngModel)]="monday">Mon
+            <input type="checkbox" id="tue" name="Tue" [(ngModel)]="tuesday">Tue
+            <input type="checkbox" id="wed" name="Wed" [(ngModel)]='wednesday'>Wed
+            <input type="checkbox" id="thur" name="Thur" [(ngModel)]='thursday'>Thur
+            <input type="checkbox" id="fri" name="Fri" [(ngModel)]='friday'>Fri
+            <input type="checkbox" id="sat" name="Sat" [(ngModel)]='saturday'>Sat
+            <input type="checkbox" id="sun" name="Sun" [(ngModel)]='sunday'>Sun
       
     </div>
 
 
     <div>
       <label for="timeframe">
-        Time frame
+        Duration
       </label>
-      <input id="timeframe" type="number" >
+      <input id="timeframe" type="number" [(ngModel)]='workoutTimes' >
     </div>
 
     <div>
       <label for="workouttypes">
         Workout types
       </label>
-            <input type="checkbox" id="out" name="Out">Outdoor
-            <input type="checkbox" id="in" name="In">Indoor
-            <input type="checkbox" id="cyc" name="Cyc">Cycling
-            <input type="checkbox" id="run" name="Run">Running
+            <input type="checkbox" id="out" name="Out" [(ngModel)]='outdoor'>Outdoor
+            <input type="checkbox" id="in" name="In" [(ngModel)]='indoor'>Indoor
+            <input type="checkbox" id="cyc" name="Cyc" [(ngModel)]='cycling'>Cycling
+            <input type="checkbox" id="run" name="Run" [(ngModel)]='running'>Running
             
     </div>
     <button class="button" type="submit" (click)="backWorkout()">Back</button>
-    <button class="button" type="submit" (click)="doSubmitWorkout()">Next</button>
-  </form>
+    <button class="button" type="submit" [disabled] = "(!monday&&!tuesday&&!wednesday&&!thursday&&!friday&&!saturday&&!sunday)||
+                                          (!indoor&&!outdoor&&!cycling&&!running)||!workoutTimes"(click)="doSubmitWorkout()">Next</button>
 
 </div>
 
 <div hidden id="account_div">
-  <h2>Account</h2>
-
-  <form>
-    <p>Email:</p>
-    <input id="email" type="text">
-
-    <p>Username:</p>
-    <input id="user" type="text">
-    
-    <p>Password:</p>
-    <input id="pass" type="password">
-
-    <br>
-    <button class="button" type="submit" (click)="backAccount()">Back</button>
-    <button class="button" type="submit" (click)="doSubmitAccount()">Submit</button>
-
-  </form>
-
+  <div class="container">
+      <div class="row">
+          <div class="col-md-6 offset-md-3">
+              <h3>Create Account</h3>
+              <form [formGroup]="registerForm" (ngSubmit)="doSubmitAccount()">
+                  <div class="form-group">
+                      <label>UserName</label>
+                      <input type="text" id="user" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                      <div class = 'error' *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                          <div class = 'error' *ngIf="f.lastName.errors.required">UserName is required</div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label>Email</label>
+                      <input type="text" id ="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                          <div class = 'error' *ngIf="f.email.errors.required">Email is required</div>
+                          <div class = 'error' *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label>Password</label>
+                      <input type="password" id="pass" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                          <div class = 'error' *ngIf="f.password.errors.required">Password is required</div>
+                          <div class = 'error' *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <button class="button" (click)="backAccount()">Back</button>
+                      <button class="button">Register</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
 </div>

@@ -1,8 +1,9 @@
+<html>
 <ng-sidebar-container>
     <!-- Sidebar -->
     <ng-sidebar [opened]="opened" id="sb_opened">
-        <p> Navigation Bar Contents</p>
-        <button (click)="toggleSidebar()">Close Navigation Bar</button>
+        <button class='button2' (click)="toggleSidebar()">Close Navigation Bar</button>
+        <h3> Navigation Bar Contents</h3>
         <ul class="menu">
             <li><a routerLink="/dashboard" (click)="toggleSidebar()">Dashboard</a></li>
             <li><a routerLink="/meal" (click)="toggleSidebar()">Meal Entering</a></li>
@@ -12,10 +13,11 @@
     </ng-sidebar>
     <div ng-sidebar-content>
         <!-- Page Header -->
-        <button (click)="toggleSidebar()" id="sb_button">
+        <button class='button2'(click)="toggleSidebar()" id="sb_button">
             Open Navigation Bar
         </button>
         <!-- Page Body -->
         <router-outlet></router-outlet>
     </div>
 </ng-sidebar-container>
+</html>

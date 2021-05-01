@@ -16,9 +16,33 @@ ng-sidebar-container{
 
 .menu li {
     margin-bottom: 15px;
+    font-family: Georgia, serif;
+    font-size: 20px;
+
 }
 
 .menu li a {
     display: block;
     width: 100%;
 }
+.button{
+    background-color: #9acf6e;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+a[ng-reflect-router-link] {
+    color: #9acf6e;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  
+  tr[ng-reflect-router-link] {
+    cursor: pointer;
+  }
+html {  
+    background-color: rgb(240, 246, 246); }

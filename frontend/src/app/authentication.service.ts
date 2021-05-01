@@ -126,7 +126,6 @@ export class AuthenticationService {
 
   doSubmit_regdata(wholedata:any): Observable<any> {
     let datastr = new URLSearchParams(wholedata).toString()
-    console.log(Config.baseURL+Config.texturl_reg+datastr)
     return this.http.post(Config.baseURL+Config.texturl_reg+datastr,
       {observe:'body', responseType:'json'})
   }

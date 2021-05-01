@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthenticationService} from '../authentication.service';
 import { fromPromise } from 'rxjs/internal-compatibility';
+import  {Router } from '@angular/router';
 @Component({
   selector: 'app-meal',
   providers: [AuthenticationService],
   templateUrl: './meal.component.html',
   styleUrls: ['./meal.component.css']
 })
-export class MealComponent  {
+export class MealComponent implements OnInit {
+  
   public foodcal:string = ""
   public foodinfo:any={
     foodname:""
@@ -27,7 +29,13 @@ export class MealComponent  {
   public carbon_sum = 0
 
   constructor(private http: HttpClient,
-              private auth: AuthenticationService ){}
+              private auth: AuthenticationService,
+              private router: Router, ){}
+  ngOnInit(): void {
+    if(!this.auth.isLoggedIn()){
+      this.router.navigate(['login']);
+    }
+  }
   doSubmit():void {
     this.auth.Submitcntext(this.foodinfo.foodname).subscribe(
       (response)=>
@@ -58,8 +66,12 @@ export class MealComponent  {
       this.size+'&sodium_mg='+this.sodium+'&name='+this.name+'&potassium_mg='+this.po+'&fat_saturated_g='
       +this.safat+'&fat_total_g='+this.fat_sum+'&calories='+this.cal_sum+'&cholesterol_mg='+this.chol
       +'&protein_g='+this.carbon_sum+'&carbohydrates_total_g='+this.protein_sum
-    console.log(backendstr)
-    this.auth.meal_post(backendstr).subscribe((response)=>{alert(JSON.stringify(response))})
+    this.auth.meal_post(backendstr).subscribe((response)=>
+      {
+      if(response.message=="Meal added to DB"){alert("Successfully Added")}
+      else{
+      alert("Failed to Add")}
+    })
   }
 
   
