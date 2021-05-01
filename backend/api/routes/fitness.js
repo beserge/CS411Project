@@ -57,14 +57,14 @@ module.exports.fitdelete = function(req, res, next) {
         return
     }
     
-    let deldata = WorkoutData.deleteMany({userid: req.payload._id}, function (err) {
+    let deldata = WorkoutData.deleteMany({userid: req.payload._id, _id: req.query.workout_id}, function (err) {
       if(err){ 
           console.log(err)
           res.status(500).send({message: "delete error, workout"})
           return
       }
       else{
-        res.status(200).send({message: "Workout(s) removed from DB"})
+        res.status(200).send({message: "Workout removed from DB"})
       }
     })
 }
