@@ -127,6 +127,10 @@ export class AuthenticationService {
     return this.request('post','meal',this.token,mealinfo)
   }
 
+  public get_meal(): Observable<any>  {
+    return this.request('get', 'meal')
+  }
+
   doSubmit_regdata(wholedata:any): Observable<any> {
     let datastr = new URLSearchParams(wholedata).toString()
     return this.http.post(Config.baseURL+Config.texturl_reg+datastr,
