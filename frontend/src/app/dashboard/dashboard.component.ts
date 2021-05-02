@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthenticationService, TokenPayload } from '../authentication.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,16 +6,7 @@ import { AuthenticationService, TokenPayload } from '../authentication.service';
   styleUrls: ['./dashboard.component.css']
 })
 
-export class DashboardComponent implements OnInit {
+export class DashboardComponent{
 
-  constructor(private auth: AuthenticationService) { }
-
-  ngOnInit(): void {
-    this.auth.get_meal().subscribe(
-      (response: any)=>
-      {
-        console.log(response)
-  })
-  }
-
+  constructor() { }
 }

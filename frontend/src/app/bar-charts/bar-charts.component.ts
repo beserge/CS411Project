@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { productSales, productSalesMulti } from '../dummydata/dummy'
+import { AuthenticationService } from '../authentication.service';
+import { MealComponent } from '../meal/meal.component';
+
+export interface MealDetails{
+  'name': String,
+  'value': number
+}
 
 @Component({
   selector: 'app-bar-charts',
@@ -7,9 +13,6 @@ import { productSales, productSalesMulti } from '../dummydata/dummy'
   styleUrls: ['./bar-charts.component.css']
 })
 export class BarChartsComponent implements OnInit {
-
-  productSales!: any;
-  productSalesMulti!: any;
 
   view: any = [700, 370];
 
@@ -22,8 +25,8 @@ export class BarChartsComponent implements OnInit {
   xAxis: boolean = true;
   yAxis: boolean = true;
 
-  yAxisLabel: string = 'Sales';
-  xAxisLabel: string = 'Products';
+  yAxisLabel: string = 'Total Calories';
+  xAxisLabel: string = 'Food';
   showXAxisLabel: boolean = true;
   showYAxisLabel: boolean = true;
 
@@ -56,9 +59,43 @@ export class BarChartsComponent implements OnInit {
 
   roundEdges: boolean = false;
 
-  constructor() { Object.assign(this, { productSales, productSalesMulti }); }
+  constructor(private auth: AuthenticationService) { }
+
+  meals: MealDetails[]=[]
+
+  findItem(name: String): number{
+    for (var i=0; i < this.meals.length; i++) {
+      if (this.meals[i]['name'] === name){
+        return i
+      }
+    }
+    return -1
+  }
 
   ngOnInit(): void {
+    this.auth.get_meal().subscribe(
+      (response: any)=>
+      {
+        console.log(response)
+
+        for (var index in response){
+          var model = <MealDetails>{}
+          model.name=response[index]['name']
+          model.value=response[index]['calories']
+
+          let mealIndex = this.findItem(model.name)
+          if(mealIndex == -1){
+            //meal doesn't exist yet
+            this.meals.push(model)
+          }
+          else{
+            this.meals[mealIndex]['value'] += model.value
+          }
+        }
+    })
+
+    console.log('meals', this.meals)
+    console.log('json meals', JSON.stringify(this.meals))
   }
 
   onSelect(event: any) {
