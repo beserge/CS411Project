@@ -1,18 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
-import { MealComponent } from '../meal/meal.component';
+import { Observable, of } from 'rxjs';
 
 export interface MealDetails{
   'name': String,
-  'value': number
+  'value': number,
 }
+
 
 @Component({
   selector: 'app-bar-charts',
   templateUrl: './bar-charts.component.html',
   styleUrls: ['./bar-charts.component.css']
 })
-export class BarChartsComponent implements OnInit {
+export class BarChartsComponent {
+
+  @Input() meals: MealDetails[]
+  @Input() activeEntries: any[]
 
   view: any = [700, 370];
 
@@ -51,7 +55,7 @@ export class BarChartsComponent implements OnInit {
   };
   schemeType: string = 'ordinal'; // 'ordinal' or 'linear'
 
-  activeEntries: any[] = ['book']
+
   barPadding: number = 5
   tooltipDisabled: boolean = false;
 
@@ -59,43 +63,8 @@ export class BarChartsComponent implements OnInit {
 
   roundEdges: boolean = false;
 
-  constructor(private auth: AuthenticationService) { }
 
-  meals: MealDetails[]=[]
-
-  findItem(name: String): number{
-    for (var i=0; i < this.meals.length; i++) {
-      if (this.meals[i]['name'] === name){
-        return i
-      }
-    }
-    return -1
-  }
-
-  ngOnInit(): void {
-    this.auth.get_meal().subscribe(
-      (response: any)=>
-      {
-        console.log(response)
-
-        for (var index in response){
-          var model = <MealDetails>{}
-          model.name=response[index]['name']
-          model.value=response[index]['calories']
-
-          let mealIndex = this.findItem(model.name)
-          if(mealIndex == -1){
-            //meal doesn't exist yet
-            this.meals.push(model)
-          }
-          else{
-            this.meals[mealIndex]['value'] += model.value
-          }
-        }
-    })
-
-    console.log('meals', this.meals)
-    console.log('json meals', JSON.stringify(this.meals))
+  constructor(private auth: AuthenticationService){
   }
 
   onSelect(event: any) {
