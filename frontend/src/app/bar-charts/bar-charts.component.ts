@@ -1,12 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
-import { Observable, of } from 'rxjs';
+// import { Observable, of } from 'rxjs';
+import { tap, first } from 'rxjs/operators'
 
 export interface MealDetails{
   'name': String,
   'value': number,
 }
-
 
 @Component({
   selector: 'app-bar-charts',
@@ -62,7 +62,6 @@ export class BarChartsComponent {
   yScaleMax: number = 9000;
 
   roundEdges: boolean = false;
-
 
   constructor(private auth: AuthenticationService){
   }

@@ -27,8 +27,7 @@ export class DashboardComponent{
   }
 
   constructor(private auth: AuthenticationService) {   
-    this.auth.get_meal().pipe(tap(
-    (response: any) =>
+    this.auth.get_meal().pipe(tap((response: any) =>
     {
       console.log(response)
 
@@ -53,7 +52,7 @@ export class DashboardComponent{
       }
       console.log('active entries', this.activeEntries)
       console.log('meals', this.meals)  
-    }), first()).toPromise().then()
+    }), first()).toPromise().finally()
 
   }
 
