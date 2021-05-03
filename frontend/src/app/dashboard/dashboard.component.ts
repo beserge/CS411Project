@@ -17,6 +17,8 @@ export class DashboardComponent{
   meals: MealDetails[]=[]
   activeEntries: any[] = []
 
+  flag: boolean = false
+
   findItem(name: String): number{
     for (var i=0; i < this.meals.length; i++) {
       if (this.meals[i]['name'] === name){
@@ -52,7 +54,7 @@ export class DashboardComponent{
       }
       console.log('active entries', this.activeEntries)
       console.log('meals', this.meals)  
-    }), first()).toPromise().finally()
+    }), first()).toPromise().then(() => { this.flag = true })
 
   }
 
