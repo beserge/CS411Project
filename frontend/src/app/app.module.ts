@@ -20,6 +20,7 @@ import { Sidebar, SidebarModule } from "ng-sidebar";
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BarChartsComponent } from './bar-charts/bar-charts.component';
 import { PieChartsComponent } from './pie-charts/pie-charts.component';
+import { GuageChartComponent } from './guage-chart/guage-chart.component';
 import { AreaLineChartsComponent } from './area-line-charts/area-line-charts.component';
 import { AddComponent } from './add/add.component';
 
@@ -36,6 +37,7 @@ import { LogoutComponent } from './logout/logout.component';
     DashboardComponent,
     BarChartsComponent,
     PieChartsComponent,
+    GuageChartComponent,
     AreaLineChartsComponent,
     AddComponent,
     LogoutComponent,
