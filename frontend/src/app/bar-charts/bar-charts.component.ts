@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { productSales, productSalesMulti } from '../dummydata/dummy'
+import { Component, Input } from '@angular/core';
+import { AuthenticationService } from '../authentication.service';
+// import { Observable, of } from 'rxjs';
+import { tap, first } from 'rxjs/operators'
+
+export interface ChartDetails{
+  'name': String,
+  'value': number,
+}
 
 @Component({
   selector: 'app-bar-charts',
   templateUrl: './bar-charts.component.html',
   styleUrls: ['./bar-charts.component.css']
 })
-export class BarChartsComponent implements OnInit {
+export class BarChartsComponent {
 
-  productSales!: any;
-  productSalesMulti!: any;
+  @Input() meals: ChartDetails[]
+  @Input() activeEntries: any[]
 
   view: any = [700, 370];
 
@@ -22,8 +29,8 @@ export class BarChartsComponent implements OnInit {
   xAxis: boolean = true;
   yAxis: boolean = true;
 
-  yAxisLabel: string = 'Sales';
-  xAxisLabel: string = 'Products';
+  yAxisLabel: string = 'Total Calories';
+  xAxisLabel: string = 'Food';
   showXAxisLabel: boolean = true;
   showYAxisLabel: boolean = true;
 
@@ -48,7 +55,7 @@ export class BarChartsComponent implements OnInit {
   };
   schemeType: string = 'ordinal'; // 'ordinal' or 'linear'
 
-  activeEntries: any[] = ['book']
+
   barPadding: number = 5
   tooltipDisabled: boolean = false;
 
@@ -56,9 +63,7 @@ export class BarChartsComponent implements OnInit {
 
   roundEdges: boolean = false;
 
-  constructor() { Object.assign(this, { productSales, productSalesMulti }); }
-
-  ngOnInit(): void {
+  constructor(private auth: AuthenticationService){
   }
 
   onSelect(event: any) {
