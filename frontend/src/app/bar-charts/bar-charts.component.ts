@@ -3,7 +3,7 @@ import { AuthenticationService } from '../authentication.service';
 // import { Observable, of } from 'rxjs';
 import { tap, first } from 'rxjs/operators'
 
-export interface MealDetails{
+export interface ChartDetails{
   'name': String,
   'value': number,
 }
@@ -15,7 +15,7 @@ export interface MealDetails{
 })
 export class BarChartsComponent {
 
-  @Input() meals: MealDetails[]
+  @Input() meals: ChartDetails[]
   @Input() activeEntries: any[]
 
   view: any = [700, 370];

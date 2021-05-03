@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { productSales, productSalesMulti } from '../dummydata/dummy';
+
+export interface ChartDetails{
+  'name': String,
+  'value': number,
+}
 
 @Component({
   selector: 'app-pie-charts',
@@ -8,12 +13,11 @@ import { productSales, productSalesMulti } from '../dummydata/dummy';
 })
 export class PieChartsComponent implements OnInit {
 
-  productSales!: any;
-  productSalesMulti!: any;
+  @Input() fitness: ChartDetails[]
 
   view: any = [700, 370];
 
-  // options
+  // options  
   showLegend: boolean = true;
   showLabels: boolean = true;
 
@@ -26,7 +30,7 @@ export class PieChartsComponent implements OnInit {
     domain: ['#704FC4', '#4B852C', '#B67A3D', '#5B6FC8', '#25706F']
   };
 
-  constructor() { Object.assign(this, { productSales, productSalesMulti }) }
+  constructor() { }
 
   ngOnInit(): void {
   }

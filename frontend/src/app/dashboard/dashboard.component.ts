@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
 import { tap, first } from 'rxjs/operators'
 
-export interface MealDetails{
+export interface ChartDetails{
   'name': String,
   'value': number,
 }
-
 
 @Component({
   selector: 'app-dashboard',
@@ -14,14 +13,16 @@ export interface MealDetails{
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent{
-  meals: MealDetails[]=[]
+  meals: ChartDetails[]=[]
   activeEntries: any[] = []
+  fitness: ChartDetails[]=[]
 
-  flag: boolean = false
+  barflag: boolean = false
+  piflag: boolean = false
 
-  findItem(name: String): number{
-    for (var i=0; i < this.meals.length; i++) {
-      if (this.meals[i]['name'] === name){
+  findItem(arr: ChartDetails[], name: String): number{
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i]['name'] === name){
         return i
       }
     }
@@ -29,17 +30,18 @@ export class DashboardComponent{
   }
 
   constructor(private auth: AuthenticationService) {   
+    //meal data
     this.auth.get_meal().pipe(tap((response: any) =>
     {
-      console.log(response)
+      console.log('meal res', (response))
 
       for (var i = 0; i < response.length; i++){
-        var model = <MealDetails>{}
+        var model = <ChartDetails>{}
         model.name=response[i]['name']
         model.value=response[i]['calories']
 
 
-        let mealIndex = this.findItem(model.name)
+        let mealIndex = this.findItem(this.meals, model.name)
         if(mealIndex == -1){
           //meal doesn't exist yet
           this.meals.push(model)
@@ -54,8 +56,33 @@ export class DashboardComponent{
       }
       console.log('active entries', this.activeEntries)
       console.log('meals', this.meals)  
-    }), first()).toPromise().then(() => { this.flag = true })
+    }), first()).toPromise().then(() => { this.barflag = true })
 
+    //fitness data
+    this.auth.getworkout().pipe(tap((response: any) =>
+    {
+      console.log('fit res', response)
+
+      for (var i = 0; i < response.length; i++){
+        var model = <ChartDetails>{}
+        model.name = (response[i]['isCycling'] ? 'Cycling' : 'Running')
+        model.value = response[i]['duration']
+
+        let fitIndex = this.findItem(this.fitness, model.name)
+        if(fitIndex == -1){
+          //meal doesn't exist yet
+          this.fitness.push(model)
+        }
+        else{
+          this.fitness[fitIndex]['value'] += model.value
+        }
+      }
+      // for(var i=0; i < this.fitness.length; i++)
+      // {
+      //   this.activeEntries.push(this.fitness[i]['name'])
+      // }
+      console.log('fitness', this.fitness)  
+    }), first()).toPromise().then(() => { this.piflag = true })
   }
 
 
