@@ -16,9 +16,11 @@ export class DashboardComponent{
   meals: ChartDetails[]=[]
   activeEntries: any[] = []
   fitness: ChartDetails[]=[]
+  macros: ChartDetails[]=[]
 
   barflag: boolean = false
   piflag: boolean = false
+  lineflag: boolean = false
 
   findItem(arr: ChartDetails[], name: String): number{
     for (var i = 0; i < arr.length; i++) {
@@ -29,6 +31,7 @@ export class DashboardComponent{
     return -1
   }
 
+  //this code badly needs refactoring!
   constructor(private auth: AuthenticationService) {   
     //meal data
     this.auth.get_meal().pipe(tap((response: any) =>
@@ -39,7 +42,6 @@ export class DashboardComponent{
         var model = <ChartDetails>{}
         model.name=response[i]['name']
         model.value=response[i]['calories']
-
 
         let mealIndex = this.findItem(this.meals, model.name)
         if(mealIndex == -1){
@@ -77,12 +79,31 @@ export class DashboardComponent{
           this.fitness[fitIndex]['value'] += model.value
         }
       }
-      // for(var i=0; i < this.fitness.length; i++)
-      // {
-      //   this.activeEntries.push(this.fitness[i]['name'])
-      // }
       console.log('fitness', this.fitness)  
     }), first()).toPromise().then(() => { this.piflag = true })
+
+    //macronutrient data
+    this.auth.get_meal().pipe(tap((response: any) =>
+    {
+      console.log('macro res', (response))
+
+      //set up all the macros
+      this.macros.push({ name: 'Carbs', value: 0 })
+      this.macros.push({ name: 'Proteins', value: 0 })
+      this.macros.push({ name: 'Fats', value: 0 })
+
+      for (var i = 0; i < response.length; i++){
+        let macroIndex = this.findItem(this.macros, 'Carbs')
+        this.macros[macroIndex]['value'] += response[i]['carbohydrates_total_g']
+
+        macroIndex = this.findItem(this.macros, 'Proteins')
+        this.macros[macroIndex]['value'] += response[i]['protein_g']
+
+        macroIndex = this.findItem(this.macros, 'Fats')
+        this.macros[macroIndex]['value'] += response[i]['fat_total_g']
+      }
+      console.log('macros', this.macros)  
+    }), first()).toPromise().then(() => { this.lineflag = true })
   }
 
 

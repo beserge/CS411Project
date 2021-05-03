@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input  } from '@angular/core';
 import { productSalesMulti } from './../dummydata/dummy';
 
+export interface ChartDetails{
+  'name': String,
+  'value': number,
+}
 
 @Component({
   selector: 'app-area-line-charts',
@@ -8,6 +12,8 @@ import { productSalesMulti } from './../dummydata/dummy';
   styleUrls: ['./area-line-charts.component.css']
 })
 export class AreaLineChartsComponent implements OnInit {
+
+  @Input() macros: ChartDetails[]
 
   constructor() {
     Object.assign(this, { productSalesMulti });
