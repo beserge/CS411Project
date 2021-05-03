@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { productSales } from '../dummydata/dummy'
 
 export interface ChartDetails{
   'name': String,
@@ -24,7 +23,6 @@ export class GuageChartComponent implements OnInit {
   };
 
   constructor() {
-    Object.assign(this, { productSales });
   }
 
   onSelect(dummydata: any): void {

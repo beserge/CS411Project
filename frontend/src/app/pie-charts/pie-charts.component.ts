@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { productSales, productSalesMulti } from '../dummydata/dummy';
 
 export interface ChartDetails{
   'name': String,
