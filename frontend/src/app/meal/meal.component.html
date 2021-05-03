@@ -1,10 +1,13 @@
 <div class='container'>
 <h2>Enter your typical meals in a day</h2>
-<input id="meal" type="text" placeholder="eg. pizza and cookie and coke" [(ngModel)]="foodinfo.foodname">
+<input id="meal" type="text" placeholder="eg. pizza" [(ngModel)]="foodinfo.foodname">
 <button class="button" type="submit" (click)="doSubmit()" [disabled]="!foodinfo.foodname">Calculate Calories</button>
-<pre><span class="inner-pre" style="font-size: 20px">{{foodcal}}</span></pre>
-    <div>
-        If okay, Click <button class="button" type="submit" [disabled]="!sugar"(click)="Submit_back()">Submit</button>
-    </div>
-
+<div>
+    <pre><span class="inner-pre" style="font-size: 20px">{{foodcal}}</span></pre>
+    Food you've entered:
+    <pre *ngFor="let food of foodlist"><span>{{food}}</span></pre>
 </div>
+    <pre>
+        If okay, Click <button class="button" type="submit" [disabled]="!a"(click)="Submit_back()">Submit</button>
+    </pre>
+
