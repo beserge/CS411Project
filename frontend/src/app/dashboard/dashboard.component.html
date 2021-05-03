@@ -1,5 +1,5 @@
 <p>Welcome! Ready to see what we have produced for you?</p>
 <app-bar-charts [meals]="meals" *ngIf="barflag"></app-bar-charts>
 <app-pie-charts [fitness]="fitness" *ngIf="piflag"></app-pie-charts>
-<app-area-line-charts [macros]="macros" *ngIf="lineflag"></app-area-line-charts>
-<app-guage-chart></app-guage-chart>
+<app-area-line-charts ></app-area-line-charts>
+<app-guage-chart [macros]="macros" *ngIf="lineflag"></app-guage-chart>

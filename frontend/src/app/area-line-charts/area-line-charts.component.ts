@@ -1,10 +1,7 @@
 import { Component, OnInit, Input  } from '@angular/core';
 import { productSalesMulti } from './../dummydata/dummy';
 
-export interface ChartDetails{
-  'name': String,
-  'value': number,
-}
+
 
 @Component({
   selector: 'app-area-line-charts',
@@ -13,7 +10,7 @@ export interface ChartDetails{
 })
 export class AreaLineChartsComponent implements OnInit {
 
-  @Input() macros: ChartDetails[]
+  macros = []
 
   constructor() {
     Object.assign(this, { productSalesMulti });

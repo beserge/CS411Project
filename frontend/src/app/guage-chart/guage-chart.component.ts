@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { productSales } from '../dummydata/dummy'
 
+export interface ChartDetails{
+  'name': String,
+  'value': number,
+}
 @Component({
   selector: 'app-guage-chart',
   templateUrl: './guage-chart.component.html',
@@ -8,7 +12,9 @@ import { productSales } from '../dummydata/dummy'
 })
 export class GuageChartComponent implements OnInit {
 
-  productSales!: any;
+  @Input() macros: ChartDetails[]
+
+
   view: any = [500, 400];
   legend: boolean = true;
   legendPosition: string = 'below';
