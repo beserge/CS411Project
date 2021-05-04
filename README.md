@@ -1,3 +1,3 @@
-# Group 12
+# 4P1-F1T
 
-git repo for our 411 project. Welcome!
+Welcome to __Group 12__'s CS411 project!
