@@ -184,7 +184,7 @@ export class RegComponent implements OnInit {
         return;
     }
 
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
+    alert('SUCCESS!! :-)\n\n')
     this.register()
   }
 
